@@ -1,0 +1,61 @@
+//
+//  ProgressBarViewController.m
+//  gaia
+//
+//  Created by GPM0-MAC-mini on 13-11-21.
+//  Copyright (c) 2013年 GPM0-MAC-mini. All rights reserved.
+//
+
+#import "ProgressBarViewController.h"
+
+@interface ProgressBarViewController ()
+
+@end
+
+@implementation ProgressBarViewController
+UIActivityIndicatorView *activityIndicator;
+UIView *view ;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width)];
+    
+    [view setTag:108];
+    [view setBackgroundColor:[UIColor blackColor]];
+    [view setAlpha:0.7];
+    [self.view addSubview:view];
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
+    [activityIndicator setCenter:view.center];
+    [activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];
+    [view addSubview:activityIndicator];
+    
+    [activityIndicator startAnimating];
+}
+
+-(void)setTip:(NSString *)tip{
+
+    UILabel *tips = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.height/2-50),self.view.frame.size.width/2+20, 100,30)];
+    tips.text=tip;
+    [tips setTag:109];
+    [tips setTextColor:[UIColor whiteColor]];
+    [self.view addSubview:tips];
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end

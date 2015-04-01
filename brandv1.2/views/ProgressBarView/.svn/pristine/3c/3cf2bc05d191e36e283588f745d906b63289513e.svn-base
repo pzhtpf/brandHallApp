@@ -1,0 +1,13 @@
+//
+//  ProgressBarViewController.h
+//  gaia
+//
+//  Created by GPM0-MAC-mini on 13-11-21.
+//  Copyright (c) 2013年 GPM0-MAC-mini. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface ProgressBarViewController : UIViewController
+-(void)setTip:(NSString *)tip;
+@end
