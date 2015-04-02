@@ -12,5 +12,5 @@
 
 + (void) loadFromURL: (NSString*) url callback:(void (^)(UIImage *image))callback;
 + (UIImage *)imageWithColor:(UIColor *)color;
-+(UIImage *)resizeImageAtPath:(NSString *)imagePath;
++(void)resizeImageAtPath:(NSString *)imagePath;
 @end

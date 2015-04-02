@@ -21,7 +21,7 @@ LoginInfo *loginInfo;
         NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *furl = [NSString stringWithFormat:@"%@/%@",documentsDirectory,url];
         image  = [UIImage imageWithContentsOfFile:furl];
-    //    image =  [self resizeImageAtPath:url];
+    //    [self resizeImageAtPath:url];
 
         dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -61,7 +61,7 @@ LoginInfo *loginInfo;
     
     return image;
 }
-+(UIImage *)resizeImageAtPath:(NSString *)imagePath {
++(void)resizeImageAtPath:(NSString *)imagePath {
     // Create the image source
     
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -82,10 +82,11 @@ LoginInfo *loginInfo;
     CGImageRef thumbnail = CGImageSourceCreateThumbnailAtIndex(src, 0, options); 
     CFRelease(src);
     // Write the thumbnail at path
- //   CGImageWriteToFile(thumbnail, imagePath);
-    return [UIImage imageWithCGImage:thumbnail];
+ //  CGImageWriteToFile(thumbnail, imagePath);
+    [self CGImageWriteToFile:thumbnail path:furl];
+ //   return [UIImage imageWithCGImage:thumbnail];
 }
-//-(void) CGImageWriteToFile(CGImageRef image, NSString *path) {
++(void) CGImageWriteToFile:(CGImageRef) image path:(NSString *)path{
 //    CFURLRef url = (__bridge CFURLRef) [NSURL fileURLWithPath:path];
 //    CGImageDestinationRef destination = CGImageDestinationCreateWithURL(url, kUTTypePNG, 1, NULL);
 //    CGImageDestinationAddImage(destination, image, nil);
@@ -93,5 +94,5 @@ LoginInfo *loginInfo;
 //    if (!CGImageDestinationFinalize(destination)) {
 //        NSLog(@"Failed to write image to %@", path);
 //    }
-//}
+}
 @end
