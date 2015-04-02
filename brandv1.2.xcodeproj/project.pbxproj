@@ -151,9 +151,7 @@
 		189EDB7B19B8108800EC8C96 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EDB7A19B8108800EC8C96 /* loginViewController.m */; };
 		189EDB7F19B834EE00EC8C96 /* 密码.png in Resources */ = {isa = PBXBuildFile; fileRef = 189EDB7D19B834EE00EC8C96 /* 密码.png */; };
 		189EDB8319B844CB00EC8C96 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EDB8219B844CB00EC8C96 /* DBHelper.m */; };
-		189EDB8619B8452A00EC8C96 /* EncryptUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EDB8519B8452A00EC8C96 /* EncryptUtil.m */; };
 		189EDB8819B8456E00EC8C96 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 189EDB8719B8456E00EC8C96 /* libsqlite3.dylib */; };
-		189EDB8B19B845CE00EC8C96 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EDB8A19B845CE00EC8C96 /* GTMBase64.m */; };
 		189EF11A19A8972900703EA5 /* collocationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EF10A19A8972900703EA5 /* collocationListController.m */; };
 		189EF11B19A8972900703EA5 /* collocationListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189EF10B19A8972900703EA5 /* collocationListController.xib */; };
 		189EF11C19A8972900703EA5 /* collocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EF10D19A8972900703EA5 /* collocationViewController.m */; };
@@ -553,12 +551,7 @@
 		189EDB7D19B834EE00EC8C96 /* 密码.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码.png"; sourceTree = "<group>"; };
 		189EDB8119B844CB00EC8C96 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		189EDB8219B844CB00EC8C96 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
-		189EDB8419B8452A00EC8C96 /* EncryptUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptUtil.h; sourceTree = "<group>"; };
-		189EDB8519B8452A00EC8C96 /* EncryptUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptUtil.m; sourceTree = "<group>"; };
 		189EDB8719B8456E00EC8C96 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		189EDB8919B845CE00EC8C96 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
-		189EDB8A19B845CE00EC8C96 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
-		189EDB8C19B8462000EC8C96 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		189EF10919A8972900703EA5 /* collocationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = collocationListController.h; path = views/collocation/collocationListController.h; sourceTree = "<group>"; };
 		189EF10A19A8972900703EA5 /* collocationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = collocationListController.m; path = views/collocation/collocationListController.m; sourceTree = "<group>"; };
 		189EF10B19A8972900703EA5 /* collocationListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = collocationListController.xib; path = views/collocation/collocationListController.xib; sourceTree = "<group>"; };
@@ -1339,11 +1332,6 @@
 		189EDB8019B844CB00EC8C96 /* DBManager */ = {
 			isa = PBXGroup;
 			children = (
-				189EDB8C19B8462000EC8C96 /* GTMDefines.h */,
-				189EDB8919B845CE00EC8C96 /* GTMBase64.h */,
-				189EDB8A19B845CE00EC8C96 /* GTMBase64.m */,
-				189EDB8419B8452A00EC8C96 /* EncryptUtil.h */,
-				189EDB8519B8452A00EC8C96 /* EncryptUtil.m */,
 				189EDB8119B844CB00EC8C96 /* DBHelper.h */,
 				189EDB8219B844CB00EC8C96 /* DBHelper.m */,
 			);
@@ -2039,7 +2027,6 @@
 				189EF12219A8972900703EA5 /* SecondViewController.m in Sources */,
 				1889806819FA4A84005EEEFB /* AFNetworkActivityIndicatorManager.m in Sources */,
 				1889806F19FA4A84005EEEFB /* UIWebView+AFNetworking.m in Sources */,
-				189EDB8B19B845CE00EC8C96 /* GTMBase64.m in Sources */,
 				189EF12119A8972900703EA5 /* messageView.m in Sources */,
 				1889806919FA4A84005EEEFB /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				189EF1FF19A8991300703EA5 /* LoginInfo.m in Sources */,
@@ -2095,7 +2082,6 @@
 				189EF21019A89AF300703EA5 /* CWPageController.m in Sources */,
 				18F53FC319F69616008292C2 /* pageControl.m in Sources */,
 				189EF13E19A8986800703EA5 /* housesViewController.m in Sources */,
-				189EDB8619B8452A00EC8C96 /* EncryptUtil.m in Sources */,
 				184E5FE61A41A3AE00FF05CE /* downloadSelectView.m in Sources */,
 				1889806019FA4A84005EEEFB /* AFHTTPRequestOperationManager.m in Sources */,
 				189EF20019A8991300703EA5 /* StockData.m in Sources */,

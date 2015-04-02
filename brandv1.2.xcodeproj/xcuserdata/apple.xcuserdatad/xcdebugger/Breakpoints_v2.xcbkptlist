@@ -3933,51 +3933,5 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "brandv1.2/tools/UIImage+Helpers.m"
-            timestampString = "449637214.51581"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "+loadFromURL:callback:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41+[UIImage(Helpers) loadFromURL:callback:]_block_invoke"
-                  moduleName = "&#x683c;&#x81f4;&#x751f;&#x6d3b;offline"
-                  urlString = "file:///Users/apple/Documents/%E5%93%81%E7%89%8C%E9%A6%86/gezlife/brandv1.2/flash_brandhall_app/gezlife/brandHallApp/brandv1.2/tools/UIImage+Helpers.m"
-                  timestampString = "449637214.565918"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "290">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41+[UIImage(Helpers) loadFromURL:callback:]_block_invoke_2"
-                  moduleName = "&#x683c;&#x81f4;&#x751f;&#x6d3b;offline"
-                  urlString = "file:///Users/apple/Documents/%E5%93%81%E7%89%8C%E9%A6%86/gezlife/brandv1.2/flash_brandhall_app/gezlife/brandHallApp/brandv1.2/tools/UIImage+Helpers.m"
-                  timestampString = "449637214.566165"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "29">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -14,14 +14,14 @@ LoginInfo *loginInfo;
     if(!image){
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0ul);
-    //dispatch_queue_create([url cStringUsingEncoding:NSASCIIStringEncoding], NULL);
-    //dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0ul);
     dispatch_async(queue, ^{
-//
+
         NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *furl = [NSString stringWithFormat:@"%@/%@",documentsDirectory,url];
-        image  = [UIImage imageWithContentsOfFile:furl];
-    //    [self resizeImageAtPath:url];
+     //   image  = [UIImage imageWithContentsOfFile:furl];
+        NSData *data = [NSData dataWithContentsOfFile:furl];
+        image = [UIImage imageWithData:data];
+        image = [UIImage imageWithCGImage: [self MyCreateThumbnailImageFromData:data imageSize:image.size.width>image.size.height?image.size.width:image.size.height]];
 
         dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -86,7 +86,7 @@ LoginInfo *loginInfo;
     [self CGImageWriteToFile:thumbnail path:furl];
  //   return [UIImage imageWithCGImage:thumbnail];
 }
-+(void) CGImageWriteToFile:(CGImageRef) image path:(NSString *)path{
++(void)CGImageWriteToFile:(CGImageRef) image path:(NSString *)path{
 //    CFURLRef url = (__bridge CFURLRef) [NSURL fileURLWithPath:path];
 //    CGImageDestinationRef destination = CGImageDestinationCreateWithURL(url, kUTTypePNG, 1, NULL);
 //    CGImageDestinationAddImage(destination, image, nil);
@@ -95,4 +95,58 @@ LoginInfo *loginInfo;
 //        NSLog(@"Failed to write image to %@", path);
 //    }
 }
++(CGImageRef)MyCreateThumbnailImageFromData:(NSData *)data imageSize:(int)imageSize
+{
+    CGImageRef        myThumbnailImage = NULL;
+    CGImageSourceRef  myImageSource;
+    CFDictionaryRef   myOptions = NULL;
+    CFStringRef       myKeys[3];
+    CFTypeRef         myValues[3];
+    CFNumberRef       thumbnailSize;
+    
+    // Create an image source from NSData; no options.
+    myImageSource = CGImageSourceCreateWithData((CFDataRef)data,
+                                                NULL);
+    // Make sure the image source exists before continuing.
+    if (myImageSource == NULL){
+        fprintf(stderr, "Image source is NULL.");
+        return  NULL;
+    }
+    
+    // Package the integer as a  CFNumber object. Using CFTypes allows you
+    // to more easily create the options dictionary later.
+    thumbnailSize = CFNumberCreate(NULL, kCFNumberIntType, &imageSize);
+    
+    // Set up the thumbnail options.
+    myKeys[0] = kCGImageSourceCreateThumbnailWithTransform;
+    myValues[0] = (CFTypeRef)kCFBooleanTrue;
+    myKeys[1] = kCGImageSourceCreateThumbnailFromImageIfAbsent;
+    myValues[1] = (CFTypeRef)kCFBooleanTrue;
+    myKeys[2] = kCGImageSourceThumbnailMaxPixelSize;
+    myValues[2] = (CFTypeRef)thumbnailSize;
+    
+    myOptions = CFDictionaryCreate(NULL, (const void **) myKeys,
+                                   (const void **) myValues, 2,
+                                   &kCFTypeDictionaryKeyCallBacks,
+                                   & kCFTypeDictionaryValueCallBacks);
+    
+    // Create the thumbnail image using the specified options.
+    myThumbnailImage = CGImageSourceCreateThumbnailAtIndex(myImageSource,
+                                                           0,
+                                                           myOptions);
+    // Release the options dictionary and the image source
+    // when you no longer need them.
+    CFRelease(thumbnailSize);
+    CFRelease(myOptions);
+    CFRelease(myImageSource);
+    
+    // Make sure the thumbnail image exists before continuing.
+    if (myThumbnailImage == NULL){
+        fprintf(stderr, "Thumbnail image not created from image source.");
+        return NULL;
+    }
+    
+    return myThumbnailImage;
+}
+
 @end
