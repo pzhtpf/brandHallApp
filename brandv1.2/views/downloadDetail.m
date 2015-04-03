@@ -1479,7 +1479,8 @@ UIPopoverController *popControllerDownloadDetail;
     if([globalContext isLogin] && loginInfo.userName.length>0){
     
         if(loginInfo.enableDownload==1){
-        [self prepareDataToDownload:singalDataMutableArray];
+            [globalContext addStatusBarNotification:@"已添加至缓存"];
+           [self prepareDataToDownload:singalDataMutableArray];
             [self.planStartDownLoad setEnabled:false];
             [self.planStartDownLoad setTitle:@"正在下载" forState:UIControlStateNormal];
             [self.planStartDownLoad setBackgroundColor:UIColorFromRGB(0xcbcbcb)];
@@ -1521,8 +1522,6 @@ UIPopoverController *popControllerDownloadDetail;
     
     
       [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDownloadCount" object:nil];
-     [globalContext addStatusBarNotification:@"已添加至缓存"];
-    
     
 }
 -(void)startDownLoadAnimation{

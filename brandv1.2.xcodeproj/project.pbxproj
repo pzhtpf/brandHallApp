@@ -71,6 +71,7 @@
 		186FF0A31A7A3E6F00AF5B7C /* pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 186FF09C1A7A3E6F00AF5B7C /* pic.png */; };
 		186FF0A41A7A3E6F00AF5B7C /* store.png in Resources */ = {isa = PBXBuildFile; fileRef = 186FF09D1A7A3E6F00AF5B7C /* store.png */; };
 		18711E4E1ACBE841004DBB9B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 18711E4D1ACBE841004DBB9B /* circle.png */; };
+		18711E511ACD3E7E004DBB9B /* UIImageViewMultiThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 18711E501ACD3E7E004DBB9B /* UIImageViewMultiThread.m */; };
 		187228221A38228C00FE6BFA /* round.png in Resources */ = {isa = PBXBuildFile; fileRef = 187228211A38228C00FE6BFA /* round.png */; };
 		187228241A384B7B00FE6BFA /* downloadPlacehoder.png in Resources */ = {isa = PBXBuildFile; fileRef = 187228231A384B7B00FE6BFA /* downloadPlacehoder.png */; };
 		187363D41AB8109100635A41 /* feedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187363D21AB8109100635A41 /* feedbackViewController.m */; };
@@ -439,6 +440,8 @@
 		186FF09C1A7A3E6F00AF5B7C /* pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic.png; sourceTree = "<group>"; };
 		186FF09D1A7A3E6F00AF5B7C /* store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = store.png; sourceTree = "<group>"; };
 		18711E4D1ACBE841004DBB9B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		18711E4F1ACD3E7E004DBB9B /* UIImageViewMultiThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewMultiThread.h; sourceTree = "<group>"; };
+		18711E501ACD3E7E004DBB9B /* UIImageViewMultiThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewMultiThread.m; sourceTree = "<group>"; };
 		187228211A38228C00FE6BFA /* round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round.png; sourceTree = "<group>"; };
 		187228231A384B7B00FE6BFA /* downloadPlacehoder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downloadPlacehoder.png; sourceTree = "<group>"; };
 		187363D11AB8109100635A41 /* feedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = feedbackViewController.h; path = views/setting/feedbackViewController.h; sourceTree = "<group>"; };
@@ -1334,6 +1337,8 @@
 			children = (
 				189EDB8119B844CB00EC8C96 /* DBHelper.h */,
 				189EDB8219B844CB00EC8C96 /* DBHelper.m */,
+				18711E4F1ACD3E7E004DBB9B /* UIImageViewMultiThread.h */,
+				18711E501ACD3E7E004DBB9B /* UIImageViewMultiThread.m */,
 			);
 			name = DBManager;
 			path = tools/DBManager;
@@ -2042,6 +2047,7 @@
 				187363D41AB8109100635A41 /* feedbackViewController.m in Sources */,
 				1832078219834F3600C4A6F4 /* AppDelegate.m in Sources */,
 				1889806619FA4A84005EEEFB /* AFURLResponseSerialization.m in Sources */,
+				18711E511ACD3E7E004DBB9B /* UIImageViewMultiThread.m in Sources */,
 				1889806D19FA4A84005EEEFB /* UIProgressView+AFNetworking.m in Sources */,
 				18F53FE219F7A75D008292C2 /* housesDetailMessage.m in Sources */,
 				1889806319FA4A84005EEEFB /* AFSecurityPolicy.m in Sources */,

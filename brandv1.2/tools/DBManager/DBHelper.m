@@ -613,9 +613,8 @@ LoginInfo *loginInfo;
         else{
             NSLog(@"%@",@"插入PlanTable成功");
             
-              NSString *path = [NSString stringWithFormat:@"%@%@",imageUrl,[data objectForKey:@"imageUrl"]];
+              NSString *path = [NSString stringWithFormat:@"%@%@_S400",imageUrl,[data objectForKey:@"imageUrl"]];
             
-        //    [downloadImage downloadImage:path name:localImageName];
              [self savePlanGoodsTable:data housesId:housesId];
           
             
@@ -638,11 +637,7 @@ LoginInfo *loginInfo;
                             if([view isKindOfClass:[UIImageView class]]){
                             
                                 UIImageView *imageView = (UIImageView *)view;
-                                
-                                [UIImage loadFromURL:localImageName callback: ^(UIImage *image){
-                                    
-                                    [imageView setImage:image];
-                                }];
+                                [imageView setImage:image];
                                 break;
                             }
                         }

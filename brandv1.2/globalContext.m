@@ -264,10 +264,9 @@ NSThread *downloadMainThread;
             planIsComplete = true;
             break;
         }
-        
-        
+
          dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-         dispatch_group_async(group, dispatch_get_main_queue(), ^{
+         dispatch_group_async(group,dispatch_get_main_queue(), ^{
         
         NSDictionary *dataTemp = [[NSDictionary alloc] initWithObjectsAndKeys:dataArgs,@"dataArgs",temp,@"temp", nil];
 

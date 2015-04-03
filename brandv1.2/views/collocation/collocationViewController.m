@@ -20,6 +20,7 @@
 #import "LSBGetDegress.h"
 #import "DBHelper.h"
 #import "UIImage+Helpers.h"
+#import "UIImageViewMultiThread.h"
 
 @interface collocationViewController ()
 
@@ -642,7 +643,7 @@ UIViewController *login;
 //            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 //            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0ul);
 //            dispatch_group_async(group,queue, ^{
-
+            
             [UIImage loadFromURL:dapei_pic_path callback: ^(UIImage *image){
                 
                 [imageview setImage:image];
@@ -652,6 +653,9 @@ UIViewController *login;
                 [self addIndex:nil];
                 
             }];
+            
+         //   [imageview loadLocalImage:dapei_pic_path];
+            
             
 //                
 //                NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];

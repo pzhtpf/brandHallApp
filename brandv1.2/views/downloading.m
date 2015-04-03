@@ -19,6 +19,7 @@
 #import "UIImage+Helpers.h"
 #import "downloadSelectView.h"
 #import "LDProgressView.h"
+#import "UIImageViewMultiThread.h"
 
 @interface downloading ()
 
@@ -388,6 +389,7 @@ NSMutableDictionary *isEditArray;
             [activityIndicator stopAnimating];
              activityIndicator.hidden = YES;
         }];
+        //    [imageView loadLocalImage:[dataPlan[0] objectForKey:@"localImageName"]];
         
         }
       

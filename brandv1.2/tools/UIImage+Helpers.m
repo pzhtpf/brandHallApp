@@ -18,10 +18,11 @@ LoginInfo *loginInfo;
 
         NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *furl = [NSString stringWithFormat:@"%@/%@",documentsDirectory,url];
-     //   image  = [UIImage imageWithContentsOfFile:furl];
-        NSData *data = [NSData dataWithContentsOfFile:furl];
-        image = [UIImage imageWithData:data];
-        image = [UIImage imageWithCGImage: [self MyCreateThumbnailImageFromData:data imageSize:image.size.width>image.size.height?image.size.width:image.size.height]];
+     //   NSURL *imageURL = [NSURL fileURLWithPath:furl];
+        image  = [UIImage imageWithContentsOfFile:furl];
+     //   NSData *data = [NSData dataWithContentsOfURL:imageURL];
+     //   image = [UIImage imageWithData:data];
+//        image = [UIImage imageWithCGImage: [self MyCreateThumbnailImageFromData:data imageSize:image.size.width>image.size.height?image.size.width:image.size.height]];
 
         dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -29,10 +30,8 @@ LoginInfo *loginInfo;
                 image = [UIImage imageWithCGImage:image.CGImage
                                             scale:image.scale
                                       orientation:UIImageOrientationUpMirrored];
-      //      image = [image resizedImage:image.size interpolationQuality: kCGInterpolationLow];
+         //   image = [image resizedImage:image.size interpolationQuality: kCGInterpolationLow];
 
-            
-            
 //            if(!loginInfo.allDownloadedImage)
 //                loginInfo.allDownloadedImage = [[NSMutableDictionary alloc] init];
 //            

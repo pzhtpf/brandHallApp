@@ -204,9 +204,9 @@ dispatch_queue_t queue;
                                                            orientation:UIImageOrientationUpMirrored];
                                 
 
-                                
+                            
                                 [self setImage:result];
-                                  dispatch_semaphore_signal(limit);
+                                dispatch_semaphore_signal(limit);
                            });
 
                  //   [self performSelector:@selector(setImage:) withObject:result afterDelay:0.0];
