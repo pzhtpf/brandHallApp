@@ -1595,7 +1595,12 @@ LoginInfo *loginInfo;
         
         if (sqlite3_exec(database, [deleteDefaultTable UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
         }
-        
+    
+      NSString *deleteDownloadingTable =[NSString stringWithFormat:@"delete from download_downloadingTable where houses_id = '%@')",housesId];
+    
+       if (sqlite3_exec(database, [deleteDownloadingTable UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
+     }
+    
         NSString *sqlHot = [NSString stringWithFormat:@"delete from download_planTable where housesId = '%@'",housesId];
         if (sqlite3_exec(database, [sqlHot UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
         }

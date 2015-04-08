@@ -84,4 +84,5 @@
 @property (assign, nonatomic) BOOL keyBoardIsShow;
 @property (retain, nonatomic) NSMutableDictionary *allDownloadedImage;
 @property (retain, nonatomic) MKMapView *housesMapView;
+@property (nonatomic, strong) NSMutableDictionary *arrFileDownloadData;
 @end

@@ -432,7 +432,7 @@ int count = 60;
         loginInfo.userAccount = self.account.text;
     
         if([enableDownload isEqualToString:@"false"])
-            loginInfo.enableDownload = 0;
+            loginInfo.enableDownload = 1;
         else
             loginInfo.enableDownload = 1;
         

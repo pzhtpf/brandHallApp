@@ -20,6 +20,7 @@
 #import "downloadSelectView.h"
 #import "LDProgressView.h"
 #import "UIImageViewMultiThread.h"
+#import "FileDownloadInfo.h"
 
 @interface downloading ()
 
@@ -1125,7 +1126,7 @@ NSMutableDictionary *isEditArray;
            
          [temp1 setValue:[NSNumber numberWithInt:status] forKey:@"status"];
             
-            
+          [self removeDownloadTask:key]; 
           [loginInfo.downloadList removeObjectForKey:key];
           UIView *tempView4 = [temp1View superview];
           [loginInfo.progressArray setValue:tempView4 forKey:key];
@@ -1145,14 +1146,16 @@ NSMutableDictionary *isEditArray;
             
             [temp1 setValue:[NSNumber numberWithInt:status] forKey:@"status"];
 
-            [loginInfo.downloadList removeObjectForKey:key];
+            loginInfo.isRedownload = true;
+           
+           [self removeDownloadTask:key];
+           [loginInfo.downloadList removeObjectForKey:key];
+           
            
            if(loginInfo.downloadList.count ==0){
                
                [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelDownloadThread" object:nil];
            }
-           
-            loginInfo.isRedownload = true;
             
            [dataUpdate setValue:[NSNumber numberWithInt:status] forKey:@"status"];
             [DBHelper updatePlanTable:dataUpdate];
@@ -1165,6 +1168,26 @@ NSMutableDictionary *isEditArray;
     }
        // isTouching = true;
   //  }
+}
+-(void)removeDownloadTask:(NSString *)houseId{
+
+    loginInfo.isDownloadComplete = true;
+    
+        NSArray *allKeys = [loginInfo.arrFileDownloadData allKeys];
+            for (int i =0; i<allKeys.count; i++) {
+                NSString *key = allKeys[i];
+                FileDownloadInfo *tempFdi = [loginInfo.arrFileDownloadData objectForKey:key];
+                if([houseId isEqualToString:tempFdi.houseId])
+                {
+                
+                    [tempFdi.downloadTask cancel];
+                    tempFdi.downloadTask = nil;
+                    [loginInfo.arrFileDownloadData removeObjectForKey:key];
+                    tempFdi = nil;
+                }
+            }
+    
+    [globalContext startDownloadThread];
 }
 -(void)saveDownloadThread:(NSMutableDictionary *)temp{
 

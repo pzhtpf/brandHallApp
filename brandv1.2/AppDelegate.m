@@ -95,8 +95,15 @@ if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
     //2.1 代码初始化社交平台的方法
     [self initializePlat];
     
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound categories:nil]];
+    }
     
     return YES;
+}
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler
+{
+    self.backgroundTransferCompletionHandler = completionHandler;
 }
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
 

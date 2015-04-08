@@ -53,6 +53,8 @@
 		1866FC1C1AA95D5500904522 /* beautifyPictureDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1866FC1A1AA95D5500904522 /* beautifyPictureDetailViewController.xib */; };
 		186897DE1A7C6A4900DDED71 /* biaoqing.png in Resources */ = {isa = PBXBuildFile; fileRef = 186897DD1A7C6A4900DDED71 /* biaoqing.png */; };
 		186A16F71A5E6A7E00979941 /* inputBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 186A16F61A5E6A7E00979941 /* inputBorder.png */; };
+		186B391A1AD37FF8005D1F9E /* BackGroundDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 186B39191AD37FF8005D1F9E /* BackGroundDownload.m */; };
+		186B391D1AD3B335005D1F9E /* FileDownloadInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 186B391C1AD3B335005D1F9E /* FileDownloadInfo.m */; };
 		186B79DA1AAEC7DA005E0D4B /* TencentOpenApi_IOS_Bundle.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 187788741A6A4CAE00E3EE85 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		186CB9671A3043BD006D48EB /* noDownloadTip.png in Resources */ = {isa = PBXBuildFile; fileRef = 186CB9661A3043BD006D48EB /* noDownloadTip.png */; };
 		186D35371A64F31B005960A6 /* lanuch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 186D35361A64F31B005960A6 /* lanuch1.png */; };
@@ -423,6 +425,10 @@
 		1866FC1A1AA95D5500904522 /* beautifyPictureDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = beautifyPictureDetailViewController.xib; path = views/beautifyPicture/beautifyPictureDetailViewController.xib; sourceTree = "<group>"; };
 		186897DD1A7C6A4900DDED71 /* biaoqing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biaoqing.png; sourceTree = "<group>"; };
 		186A16F61A5E6A7E00979941 /* inputBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inputBorder.png; sourceTree = "<group>"; };
+		186B39181AD37FF8005D1F9E /* BackGroundDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackGroundDownload.h; path = tools/BackGroundDownload.h; sourceTree = "<group>"; };
+		186B39191AD37FF8005D1F9E /* BackGroundDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BackGroundDownload.m; path = tools/BackGroundDownload.m; sourceTree = "<group>"; };
+		186B391B1AD3B335005D1F9E /* FileDownloadInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileDownloadInfo.h; path = tools/FileDownloadInfo.h; sourceTree = "<group>"; };
+		186B391C1AD3B335005D1F9E /* FileDownloadInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileDownloadInfo.m; path = tools/FileDownloadInfo.m; sourceTree = "<group>"; };
 		186CB9661A3043BD006D48EB /* noDownloadTip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noDownloadTip.png; sourceTree = "<group>"; };
 		186D35361A64F31B005960A6 /* lanuch1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lanuch1.png; sourceTree = "<group>"; };
 		186D35381A64FBF2005960A6 /* lanuch2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lanuch2.png; sourceTree = "<group>"; };
@@ -965,6 +971,17 @@
 			name = setting;
 			sourceTree = "<group>";
 		};
+		186B391E1AD3B34D005D1F9E /* BackGroundDownload */ = {
+			isa = PBXGroup;
+			children = (
+				186B39181AD37FF8005D1F9E /* BackGroundDownload.h */,
+				186B39191AD37FF8005D1F9E /* BackGroundDownload.m */,
+				186B391B1AD3B335005D1F9E /* FileDownloadInfo.h */,
+				186B391C1AD3B335005D1F9E /* FileDownloadInfo.m */,
+			);
+			name = BackGroundDownload;
+			sourceTree = "<group>";
+		};
 		186D35351A64F31B005960A6 /* lanuchImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1246,6 +1263,7 @@
 				1889804D19FA4A84005EEEFB /* UIKit+AFNetworking */,
 				18F5401519F7B7D4008292C2 /* downloadImage.h */,
 				18F5401619F7B7D4008292C2 /* downloadImage.m */,
+				186B391E1AD3B34D005D1F9E /* BackGroundDownload */,
 				189EDB8019B844CB00EC8C96 /* DBManager */,
 				189EF1D919A8991300703EA5 /* Define.h */,
 				189EF1DA19A8991300703EA5 /* LoginInfo.h */,
@@ -2056,6 +2074,7 @@
 				184636581A2C6036001D96EA /* DAProgressOverlayView.m in Sources */,
 				189EF12319A8972900703EA5 /* typeSearchTableViewController.m in Sources */,
 				189EF14219A8987C00703EA5 /* selfDesignViewController.m in Sources */,
+				186B391D1AD3B335005D1F9E /* FileDownloadInfo.m in Sources */,
 				1889806219FA4A84005EEEFB /* AFNetworkReachabilityManager.m in Sources */,
 				189EF11C19A8972900703EA5 /* collocationViewController.m in Sources */,
 				189EF20319A8991300703EA5 /* UIImage+RoundedCorner.m in Sources */,
@@ -2070,6 +2089,7 @@
 				189EF21119A89AF300703EA5 /* CWPageModel.m in Sources */,
 				1866FC1B1AA95D5500904522 /* beautifyPictureDetailViewController.m in Sources */,
 				18B8512A1A12F4E100EAC0F6 /* downFirstPageViewController.m in Sources */,
+				186B391A1AD37FF8005D1F9E /* BackGroundDownload.m in Sources */,
 				1889805F19FA4A84005EEEFB /* AFHTTPRequestOperation.m in Sources */,
 				18AD71FE1A09F347001BDF39 /* EGORefreshTableHeaderView.m in Sources */,
 				1889806419FA4A84005EEEFB /* AFURLConnectionOperation.m in Sources */,

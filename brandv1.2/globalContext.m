@@ -24,6 +24,7 @@
 #import "UIImage+Resize.h"
 #import "ChineseString.h"
 #import "pinyin.h"
+#import "BackGroundDownload.h"
 
 //static dispatch_queue_t http_request_operation_processing_queue() {
 //    static dispatch_queue_t af_http_request_operation_processing_queue;
@@ -70,30 +71,34 @@ NSThread *downloadMainThread;
     [alert show];
 
 }
+
 +(void)startDownloadThread{
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelDownloadThread:) name:@"cancelDownloadThread" object:nil];
-    loginInfo = [[StockData getSingleton] valueForKey:@"loginInfo"];
-
-    if (!loginInfo.downloadList)
-    loginInfo.downloadList = [DBHelper getDataFromPlanTable:1];
     
-    if( loginInfo.downloadList.count>0){
-        
-        loginInfo.isRedownload = false;
-        loginInfo.isDownloadComplete = false;
-        planIsComplete = true;
-        
-        downloadMainThread = [[NSThread alloc] initWithTarget:self selector:@selector(startDownloadMethod:) object: loginInfo.downloadList];
-        [downloadMainThread start];
-        
-    }
-    else{
-        loginInfo.isDownloadComplete = true;
+    BackGroundDownload *_BackGroundDownload = [[BackGroundDownload alloc] init];
+    [_BackGroundDownload startDownload];
 
-    }
-    
-      loginInfo.isRedownload = false;
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelDownloadThread:) name:@"cancelDownloadThread" object:nil];
+//    loginInfo = [[StockData getSingleton] valueForKey:@"loginInfo"];
+//
+//    if (!loginInfo.downloadList)
+//    loginInfo.downloadList = [DBHelper getDataFromPlanTable:1];
+//    
+//    if( loginInfo.downloadList.count>0){
+//        
+//        loginInfo.isRedownload = false;
+//        loginInfo.isDownloadComplete = false;
+//        planIsComplete = true;
+//        
+//        downloadMainThread = [[NSThread alloc] initWithTarget:self selector:@selector(startDownloadMethod:) object: loginInfo.downloadList];
+//        [downloadMainThread start];
+//        
+//    }
+//    else{
+//        loginInfo.isDownloadComplete = true;
+//
+//    }
+//    
+//      loginInfo.isRedownload = false;
 }
 +(void)cancelDownloadThread:(NSNotification *)notification{
 
