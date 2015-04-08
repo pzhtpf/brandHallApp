@@ -38,7 +38,7 @@ NSThread *downloadMainThread;
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"com.gezlife.leju.prebuild"];
     
     //Through this, we will allow five simultaneous downloads to take place at once
-    sessionConfiguration.HTTPMaximumConnectionsPerHost = 5;
+    sessionConfiguration.HTTPMaximumConnectionsPerHost = 10;
     
     //The next step that must be performed, is to instantiate the session property using the sessionConfiguration object
     //Here a NSURLSession session has been instantiated and is now ready to be used in order to fire background download tasks.
