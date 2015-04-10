@@ -12,4 +12,5 @@
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSURL *docDirectoryURL;
 -(void)startDownload;
++(void)removeDownloadTask:(NSString *)houseId;
 @end

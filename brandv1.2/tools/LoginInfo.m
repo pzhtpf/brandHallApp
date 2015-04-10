@@ -10,7 +10,7 @@
 
 @implementation LoginInfo
 @synthesize userName,apiToken,cookieName,cookieValue;
-@synthesize password,isAutoLogin,serverUrl,domain,lang,isLogin,isPush,productViewData,url,planViewData,housesViewData,deviceToken,allMessage,selected,isWiFi,message,planSearchType,productAllData,collocationType,productSearchType,housesSearchType,houseSearch,planSearch,productSearch,lanuchImages,productData,housesdetailcontroller,isMirror,hideArray,progressBarView,permissionsMutableArray,defaultPermissionsMutableArray,housesListSearch,housesListDetailViewData,dataFromPlanTable,downloadingViewData,isDownloadComplete,isRedownload,progressArray,downloadList,isOfflineMode,housesType,downloadType,enableDownload,downloadListViewData,classicPlanSearchType,housesClassicSearch,isTouching,mySegmented,topBarView,notificationQueue,isProductDetail,productIsZoom,bpAllData,keyBoardIsShow,portrait,userType,userId,userAccount,brandName,brand_logo_app,allDownloadedImage,downloadedImage,housesMapView,arrFileDownloadData;
+@synthesize password,isAutoLogin,serverUrl,domain,lang,isLogin,isPush,productViewData,url,planViewData,housesViewData,deviceToken,allMessage,selected,isWiFi,message,planSearchType,productAllData,collocationType,productSearchType,housesSearchType,houseSearch,planSearch,productSearch,lanuchImages,productData,housesdetailcontroller,isMirror,hideArray,progressBarView,permissionsMutableArray,defaultPermissionsMutableArray,housesListSearch,housesListDetailViewData,dataFromPlanTable,downloadingViewData,isDownloadComplete,isRedownload,progressArray,downloadList,isOfflineMode,housesType,downloadType,enableDownload,downloadListViewData,classicPlanSearchType,housesClassicSearch,isTouching,mySegmented,topBarView,notificationQueue,isProductDetail,productIsZoom,bpAllData,keyBoardIsShow,portrait,userType,userId,userAccount,brandName,brand_logo_app,allDownloadedImage,downloadedImage,housesMapView,arrFileDownloadData,tempArrFileDownloadData;
 
 -(void) superDealloc{
     userName=nil;
@@ -60,6 +60,7 @@
     allDownloadedImage = nil;
     housesMapView = nil;
     arrFileDownloadData = nil;
+    tempArrFileDownloadData = nil;
 }
 
 @end

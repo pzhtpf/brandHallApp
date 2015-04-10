@@ -15,5 +15,6 @@
 +(void)downloadImage:(NSString *)path name:(NSString *)name;
 +(BOOL)saveImage:(NSString *)name image:(NSData*) data;
 +(BOOL)saveImageToLocal:(NSDictionary *)data;
++(bool)saveImageWithImage:(UIImage *)image name:(NSString *)name;
 +(void)removeImage:(NSString*)fileName;
 @end

@@ -26,7 +26,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *remainApp;
 @property (strong, nonatomic) IBOutlet UILabel *totalText;
 @property (strong, nonatomic) NSMutableArray *downloadingAllData;
--(void)configView:(NSArray *)data;
 @property (strong, nonatomic) IBOutlet UIView *planSelectView;
 @property (strong, nonatomic) IBOutlet UIImageView *planSelectImageView;
 @property (strong, nonatomic) IBOutlet UILabel *planSelectHousesName;

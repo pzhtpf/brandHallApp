@@ -23,8 +23,9 @@
 +(void)saveDataToPlanTable:(NSDictionary *)data;
 +(NSMutableDictionary *)getDataFromPlanTable:(int)type;
 +(void)savePlanGoodsTable:(NSDictionary *)data housesId:(NSString *)housesId;
-+(void)saveDownloadingTable:(NSString *)houses_id plan_id:(NSString *)plan_id localImageName:(NSString *)localImageName
-                  image_url:(NSString *)image_url image_size:(NSString *)image_size type:(NSString *)type elementId:(NSString *)elementId productId:(NSString *)productId id:(NSString *)idStr status:(NSNumber *)status;
+//+(void)saveDownloadingTable:(NSString *)houses_id plan_id:(NSString *)plan_id localImageName:(NSString *)localImageName
+//                  image_url:(NSString *)image_url image_size:(NSString *)image_size type:(NSString *)type elementId:(NSString *)elementId productId:(NSString *)productId id:(NSString *)idStr status:(NSNumber *)status;
++(void)saveDownloadingTable:(NSMutableArray *)data;
 +(NSMutableArray *)getUndownloadByPlanId:(NSString *) planId;
 +(BOOL)updatePlanTable:(NSMutableDictionary *)data;
 +(NSMutableArray *)getGoodsByPlanId:(NSString *) planId;

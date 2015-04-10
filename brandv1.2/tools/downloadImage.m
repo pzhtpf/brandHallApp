@@ -136,7 +136,18 @@
     return result;
 }
 
++(bool)saveImageWithImage:(UIImage *)image name:(NSString *)name{
 
+    NSArray *names = [name componentsSeparatedByString:@"."];
+    
+    NSString *extension = names[names.count-1];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    return [self saveImage:image withFileName:name ofType:extension inDirectory:documentsDirectory];
+}
 +(bool) saveImage:(UIImage *)image withFileName:(NSString *)imageName ofType:(NSString *)extension inDirectory:(NSString *)directoryPath
 {
     bool flag = false;

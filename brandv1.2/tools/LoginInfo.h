@@ -85,4 +85,5 @@
 @property (retain, nonatomic) NSMutableDictionary *allDownloadedImage;
 @property (retain, nonatomic) MKMapView *housesMapView;
 @property (nonatomic, strong) NSMutableDictionary *arrFileDownloadData;
+@property (nonatomic, strong) NSMutableArray *tempArrFileDownloadData;
 @end

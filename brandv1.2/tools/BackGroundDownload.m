@@ -86,6 +86,35 @@ NSThread *downloadMainThread;
     }
 }
 
+-(FileDownloadInfo *)getFileDownloadInfo:(int)taskIdentifier{
+    
+    if(!loginInfo.isRedownload){
+    
+    NSArray *allKeys = [loginInfo.arrFileDownloadData allKeys];
+    
+    for (NSString *key in allKeys) {
+        
+        FileDownloadInfo *fdi = [loginInfo.arrFileDownloadData objectForKey:key];
+       if(fdi.taskIdentifier ==taskIdentifier)
+           return fdi;
+    }
+ }
+    return nil;
+}
++(void)removeDownloadTask:(NSString *)houseId{
+    
+    loginInfo.isDownloadComplete = true;
+    
+    NSArray *allKeys = [loginInfo.arrFileDownloadData allKeys];
+    for (NSString *key in allKeys) {
+        FileDownloadInfo *fdi = [loginInfo.arrFileDownloadData objectForKey:key];
+        if([houseId isEqualToString:fdi.houseId]){
+            [fdi.downloadTask cancel];
+            [loginInfo.arrFileDownloadData removeObjectForKey:key];
+        }
+    }
+    
+}
 //This method is called by the system every time a download is over, and is our duty to write the appropriate code in order
 //to get the file from its temporary location
 -(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
@@ -93,7 +122,9 @@ NSThread *downloadMainThread;
     if(loginInfo.arrFileDownloadData.count>0){
     
  
-    FileDownloadInfo *fdi = [loginInfo.arrFileDownloadData objectForKey:[NSString stringWithFormat:@"%d",downloadTask.taskIdentifier]];
+    FileDownloadInfo *fdi =  [self getFileDownloadInfo:downloadTask.taskIdentifier];
+        
+        //[loginInfo.arrFileDownloadData objectForKey:[NSString stringWithFormat:@"%d",downloadTask.taskIdentifier]];
     
     if(fdi!=nil){
         
@@ -125,24 +156,6 @@ NSThread *downloadMainThread;
     // so when the start button gets tapped again to start over the file download.
     fdi.taskIdentifier = -10;
         
-//    int count = 0;
-//    NSArray *allKeys = [loginInfo.arrFileDownloadData allKeys];
-//        for (int i =0; i<allKeys.count; i++) {
-//            NSString *key = allKeys[i];
-//            FileDownloadInfo *tempFdi = [loginInfo.arrFileDownloadData objectForKey:key];
-//            if([fdi.houseId isEqualToString:tempFdi.houseId])
-//                count++;
-//        }
-//       
-//        if(count==0){
-//            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-//            localNotification.alertBody = @"All files have been downloaded!";
-//            [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
-//            
-//            [self startDownloadThread];   //下载下一个样板间
-//        
-//        }
-        
  //   [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             // Reload the respective table view row using the main thread.
         [self singleImageDownloadComplete:fdi.downloadTaskData image:nil];
@@ -150,10 +163,7 @@ NSThread *downloadMainThread;
         
     if(success)
     {
-        // Change the flag values of the respective FileDownloadInfo object.
-//        int index = [self getFileDownloadInfoIndexWithTaskIdentifier:downloadTask.taskIdentifier];
-//        FileDownloadInfo *fdi = [self.arrFileDownloadData objectAtIndex:index];
-//        
+
     }
     else
     {
@@ -168,11 +178,11 @@ NSThread *downloadMainThread;
     if (error != nil) {
         NSLog(@"Download completed with error: %@", [error localizedDescription]);
         
-        FileDownloadInfo *fdi = [loginInfo.arrFileDownloadData objectForKey:[NSString stringWithFormat:@"%d",task.taskIdentifier]];
-       if (fdi==nil) {
-             [self singleImageDownloadComplete:fdi.downloadTaskData image:nil];
-        }
-       else if(fdi.taskIdentifier >-1){          //第一次下载失败
+        FileDownloadInfo *fdi = [self getFileDownloadInfo:task.taskIdentifier];
+//       if (fdi==nil) {
+//             [self singleImageDownloadComplete:fdi.downloadTaskData image:nil];
+//        }
+      if(fdi.taskIdentifier >-1){          //第一次下载失败
             fdi.taskIdentifier = -1;
             [fdi.downloadTask resume];
         }
@@ -225,8 +235,6 @@ NSThread *downloadMainThread;
 
 -(void)startDownloadThread{
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelDownloadThread:) name:@"cancelDownloadThread" object:nil];
-    
     if (!loginInfo.downloadList)
         loginInfo.downloadList = [DBHelper getDataFromPlanTable:1];
     
@@ -264,22 +272,31 @@ NSThread *downloadMainThread;
             
             NSDictionary *temp = [dataArray objectForKey:keys[0]];
             
-         //   [self performSelectorInBackground:@selector(changeWaitToDownloadViewMethod:) withObject:[temp objectForKey:@"housesId"]];
+            [self performSelectorInBackground:@selector(changeWaitToDownloadViewMethod:) withObject:[temp objectForKey:@"housesId"]];
             
-            if([temp objectForKey:@"nowStart"]){
-                
-                [self saveDownloadData:temp];
-                
-                if(loginInfo.progressArray){
+            
+            if(loginInfo.progressArray){
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDownloadingView" object:nil];
-                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDownloadingView" object:nil];
             }
             
             NSArray *data = [temp objectForKey:@"data"];
             
-            for (NSDictionary *tempData in data){
+            int count = 0;
+            
+          //  for (NSDictionary *tempData in data){
+            while (true) {
+                
+                if(loginInfo.isRedownload){    //用户暂停下载
+            
+                    break;
+                }
+
+                if([self isComplete:[temp objectForKey:@"housesId"]]){
                     
+                    if(count<data.count){
+                    
+                    NSDictionary *tempData = data[count];
                     NSMutableDictionary *temp2= [[NSMutableDictionary alloc] initWithDictionary:tempData];
                     [temp2 setValue:[temp objectForKey:@"housesId"] forKey:@"housesId"];
                     [temp2 setValue:[temp objectForKey:@"housesName"] forKey:@"housesName"];
@@ -287,9 +304,20 @@ NSThread *downloadMainThread;
                     if([temp objectForKey:@"isHigh"])
                     [temp2 setValue:[temp objectForKey:@"isHigh"] forKey:@"isHigh"];
                     [self startDownload:temp2];
-          
+                  //  [self initCompleteStart];
+                    }
+                    
+                    else
+                        break;
+                        
+                    count++;
+        
+                }
+                [NSThread sleepForTimeInterval:1];
             }
          
+            [self downloadComplete:[temp objectForKey:@"housesId"]];
+            [self startDownloadThread];   //下载下一个样板间
         }
         else{
             
@@ -298,31 +326,8 @@ NSThread *downloadMainThread;
         }
     
 }
--(void)saveDownloadData:(NSDictionary *)temp{
-    
-    [DBHelper saveDataToPlanTable:temp];
-    
-    NSString *angle = [temp objectForKey:@"angle"];
-    
-    NSArray *defaultDataArray = [temp objectForKey:@"data"];
-    
-    for(NSDictionary *temp7 in defaultDataArray){
-        
-        NSArray *defaultData = [temp7 objectForKey:@"defaultData"];
-        if(![defaultData isKindOfClass:[NSNull class]])
-            [DBHelper saveDataToDefaultTable:defaultData planId:[temp7 objectForKey:@"planId"] angle:angle];
-        
-    }
-    
-    
-    NSMutableDictionary *temp6 = [DBHelper getDataFromPlanTable:[[temp objectForKey:@"housesId"] intValue]];
-    NSArray *keys = [temp6 allKeys];
-    if(keys.count>0){
-        //    temp = [temp6 objectForKey:keys[0]];
-        [loginInfo.dataFromPlanTable setValue:[temp6 objectForKey:keys[0]] forKey:keys[0]];
-    }
-    
-}
+
+
 +(void)downloadThreadByPlanId:(NSDictionary *)planData housesId:(NSString *)housesId{
     
     NSMutableDictionary *temp = [[NSMutableDictionary alloc] initWithDictionary:planData];
@@ -399,10 +404,12 @@ NSThread *downloadMainThread;
                         
                     // Keep the new taskIdentifier.
                     fdi.taskIdentifier = fdi.downloadTask.taskIdentifier;
-                    [loginInfo.arrFileDownloadData setValue:fdi forKey:[NSString stringWithFormat:@"%lu", fdi.taskIdentifier]];
+//                    NSLog(@"%lu",fdi.taskIdentifier);
+                    
+                    [loginInfo.arrFileDownloadData setValue:fdi forKey:[NSString stringWithFormat:@"%lu",fdi.taskIdentifier]];
 
                         
-                        //Start the download
+                    // Start the download
                     [fdi.downloadTask resume];
                     
                     
@@ -444,8 +451,6 @@ NSThread *downloadMainThread;
     
     NSString *planId = [temp objectForKey:@"planId"];
     
-    //    [DBHelper saveDownloadingTable:[temp objectForKey:@"housesId"] plan_id:planId localImageName:[temp objectForKey:@"localImageName"] image_url:[temp objectForKey:@"imageUrl"] image_size:[temp objectForKey:@"imageSize"] type:[temp objectForKey:@"type"] elementId:[temp objectForKey:@"elementId"] productId:[temp objectForKey:@"productId"] id:[temp objectForKey:@"id"] status:[NSNumber numberWithInt:1]];
-    
     [DBHelper updateDownloadingTable:[NSNumber numberWithInt:1] localImageName:[temp objectForKey:@"localImageName"] ];
     
     double thisDownloadSize = [[temp objectForKey:@"imageSize"] longLongValue];
@@ -470,7 +475,7 @@ NSThread *downloadMainThread;
     
     
     
-    if(!loginInfo.isRedownload){
+    if(!loginInfo.isRedownload && [loginInfo.downloadList objectForKey:[dataArgs objectForKey:@"housesId"]]){
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -483,6 +488,8 @@ NSThread *downloadMainThread;
     increaseCountBackGroundDownload++;
     
     if(increaseCountBackGroundDownload == planCountBackGroundDownload){    //下载完毕
+    
+ //   if([self isComplete:[dataArgs objectForKey:@"housesId"]]){
         
         [dataArgs setValue:@"0" forKey:@"remain"];
         [dataArgs setValue:[NSNumber numberWithInt:3] forKey:@"status"];
@@ -508,7 +515,6 @@ NSThread *downloadMainThread;
         [self uploadDownloadRecord:[dataArgs objectForKey:@"planId"] version:[dataArgs objectForKey:@"nowVersion"]];
         planIsCompleteBackGroundDownload = true;
         
-        [self downloadComplete:[dataArgs objectForKey:@"housesId"]];
         
         dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -519,19 +525,27 @@ NSThread *downloadMainThread;
         localNotification.alertBody = [NSString stringWithFormat:@"%@已下载完毕",[dataArgs objectForKey:@"name"]];
         [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
         
-        [self startDownloadThread];   //下载下一个样板间
-        
     }
     
 }
+-(BOOL)isComplete:(NSString *)houseId{
 
+         int count = 0;
+    
+            NSArray *allKeys = [loginInfo.arrFileDownloadData allKeys];
+            for (NSString *key in allKeys) {
+                FileDownloadInfo *tempFdi = [loginInfo.arrFileDownloadData objectForKey:key];
+                if([houseId isEqualToString:tempFdi.houseId])
+                    count++;
+            }
+
+    return count==0;
+}
 -(void)addProgressingView:(NSMutableDictionary *)dataArgs{
     
     // 添加正在下载的界面
     
     NSString *housesId = [dataArgs objectForKey:@"housesId"];
-    
-    //   [self addProgressingViewMethod:housesId];
     
     if(loginInfo.progressArray){
         
@@ -539,7 +553,9 @@ NSThread *downloadMainThread;
         if(tempView){
             
             UILabel *downloaded = (UILabel *)[tempView viewWithTag:61];
-            if(downloaded){
+            UILabel *downloadedPlan = (UILabel *)[tempView viewWithTag:65];
+            
+            if(downloaded && !downloadedPlan){
                 
                 [downloaded setHidden:true];
                 
@@ -556,11 +572,9 @@ NSThread *downloadMainThread;
                     UIView *temp2View = [tempView viewWithTag:[[dataArgs objectForKey:@"housesId"] intValue]];
                     if(temp2View)
                         
-                        if(temp3View && increaseCountBackGroundDownload == planCountBackGroundDownload){
+                        if(temp3View){
                             
                             [temp3View removeFromSuperview];
-                            
-                            [self downloadComplete:housesId];
                             
                         }
                 }
@@ -572,7 +586,7 @@ NSThread *downloadMainThread;
                 
                 float perFloat = (total-remain)/total;
                 
-                if([temp4View isKindOfClass:[LDProgressView class]]){
+                if([temp4View isKindOfClass:[LDProgressView class]] && perFloat<=1){
                     LDProgressView *mixedIndicator =  (LDProgressView *)temp4View;
                     
                     if(perFloat>mixedIndicator.progress){
@@ -581,58 +595,55 @@ NSThread *downloadMainThread;
                         [downloaded setText:[NSString stringWithFormat:@" 已下载%@",per]];
                     }
                 }
-                
             }
-        }
-        UILabel *downloadedPlan = (UILabel *)[tempView viewWithTag:65];
-        if(downloadedPlan){
             
-            NSDictionary *temp1 = [loginInfo.dataFromPlanTable objectForKey:housesId];
-            NSArray *data = [temp1 objectForKey:@"data"];
             
-            double total = 0;
-            double completeTotal = 0;
-            for(NSDictionary *temp2 in data){
+           else if(downloadedPlan){
                 
-                total = total + [[temp2 objectForKey:@"total"] longLongValue];
-                if([[temp2 objectForKey:@"status"] intValue] == 3){
+                NSDictionary *temp1 = [loginInfo.dataFromPlanTable objectForKey:housesId];
+                NSArray *data = [temp1 objectForKey:@"data"];
+                
+                double total = 0;
+                double completeTotal = 0;
+                for(NSDictionary *temp2 in data){
                     
-                    completeTotal = completeTotal +[[temp2 objectForKey:@"total"] longLongValue];
+                    total = total + [[temp2 objectForKey:@"total"] longLongValue];
+                    if([[temp2 objectForKey:@"status"] intValue] == 3){
+                        
+                        completeTotal = completeTotal +[[temp2 objectForKey:@"total"] longLongValue];
+                    }
+                    
+                }
+                
+                double complete = completeTotal+ [[dataArgs objectForKey:@"total"] longLongValue]-[[dataArgs objectForKey:@"remain"] longLongValue];
+                UIView *temp3View = [tempView viewWithTag:99];
+                NSArray *subViews = [temp3View subviews];
+                UIView *temp4View = subViews[0];
+                
+                if(total<=completeTotal){
+                    
+                    if(temp3View)
+                        
+                        [temp3View removeFromSuperview];
+                }
+                
+                if([temp4View isKindOfClass:[LDProgressView class]] && complete/total<=1){
+                    LDProgressView *mixedIndicator =  (LDProgressView *)temp4View;
+                    if(complete/total>mixedIndicator.progress)
+                    mixedIndicator.tip =@"";
+                    mixedIndicator.progress = complete/total;
                 }
                 
             }
             
-            double complete = completeTotal+ [[dataArgs objectForKey:@"total"] longLongValue]-[[dataArgs objectForKey:@"remain"] longLongValue];
-            completeTotal +=complete;
-            UIView *temp3View = [tempView viewWithTag:99];
-            NSArray *subViews = [temp3View subviews];
-            UIView *temp4View = subViews[0];
-            
-            if(total<=completeTotal){
-                
-                if(temp3View && increaseCountBackGroundDownload == planCountBackGroundDownload)
-                    
-                    [temp3View removeFromSuperview];
-                    [self downloadComplete:housesId];
-
-            }
-            
-            if([temp4View isKindOfClass:[LDProgressView class]]){
-                LDProgressView *mixedIndicator =  (LDProgressView *)temp4View;
-                if(complete/total>mixedIndicator.progress)
-                    mixedIndicator.tip =@"";
-                mixedIndicator.progress = complete/total;
-            }
-            
         }
-        
     }
     //   [[NSNotificationCenter defaultCenter] postNotificationName:@"updateView" object:nil];
 }
 -(void)downloadComplete:(NSString *)housesId{
 
     [loginInfo.downloadList removeObjectForKey:housesId];
-    [loginInfo.progressArray removeObjectForKey:housesId];
+  //  [loginInfo.progressArray removeObjectForKey:housesId];
     loginInfo.isTouching = true;
     
     if(loginInfo.downloadList.count ==0){
@@ -646,11 +657,6 @@ NSThread *downloadMainThread;
         
         UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(0,0,156,117)];
         tempView.tag = 99;
-        //            DAProgressOverlayView *mixedIndicator = [[DAProgressOverlayView alloc] initWithFrame:CGRectMake(5,5,185,120)];
-        //            mixedIndicator.tag = [housesId intValue];
-        //            mixedIndicator.progress = 0.01;
-        //            [mixedIndicator setBackgroundColor:[UIColor clearColor]];
-        
         LDProgressView *progressView = [[LDProgressView alloc] initWithFrame:CGRectMake(0,0,156,117)];
         progressView.showText = @YES;
         progressView.borderRadius = @4;

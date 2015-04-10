@@ -21,6 +21,7 @@
 #import "LDProgressView.h"
 #import "UIImageViewMultiThread.h"
 #import "FileDownloadInfo.h"
+#import "BackGroundDownload.h"
 
 @interface downloading ()
 
@@ -1126,7 +1127,7 @@ NSMutableDictionary *isEditArray;
            
          [temp1 setValue:[NSNumber numberWithInt:status] forKey:@"status"];
             
-          [self removeDownloadTask:key]; 
+          [BackGroundDownload removeDownloadTask:key];
           [loginInfo.downloadList removeObjectForKey:key];
           UIView *tempView4 = [temp1View superview];
           [loginInfo.progressArray setValue:tempView4 forKey:key];
@@ -1148,7 +1149,7 @@ NSMutableDictionary *isEditArray;
 
             loginInfo.isRedownload = true;
            
-           [self removeDownloadTask:key];
+           [BackGroundDownload removeDownloadTask:key];
            [loginInfo.downloadList removeObjectForKey:key];
            
            
@@ -1169,26 +1170,7 @@ NSMutableDictionary *isEditArray;
        // isTouching = true;
   //  }
 }
--(void)removeDownloadTask:(NSString *)houseId{
 
-    loginInfo.isDownloadComplete = true;
-    
-        NSArray *allKeys = [loginInfo.arrFileDownloadData allKeys];
-            for (int i =0; i<allKeys.count; i++) {
-                NSString *key = allKeys[i];
-                FileDownloadInfo *tempFdi = [loginInfo.arrFileDownloadData objectForKey:key];
-                if([houseId isEqualToString:tempFdi.houseId])
-                {
-                
-                    [tempFdi.downloadTask cancel];
-                    tempFdi.downloadTask = nil;
-                    [loginInfo.arrFileDownloadData removeObjectForKey:key];
-                    tempFdi = nil;
-                }
-            }
-    
-    [globalContext startDownloadThread];
-}
 -(void)saveDownloadThread:(NSMutableDictionary *)temp{
 
     [globalContext saveDownloadData:temp];
@@ -1452,8 +1434,11 @@ NSMutableDictionary *isEditArray;
         }
     }
     
+    [allSelect removeAllObjects];
     NSString *deleteStr = [NSString stringWithFormat:@"删除(%d)",[allSelect count]];
     [self.delete setTitle:deleteStr forState:UIControlStateNormal];
+    NSString *topDeleteStr = [NSString stringWithFormat:@"已选择%d套方案",[allSelect count]];
+    [self.deleteTitleLabel setText:topDeleteStr];
     [self usedSpaceAndfreeSpace];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDownloadCount" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateView" object:nil];

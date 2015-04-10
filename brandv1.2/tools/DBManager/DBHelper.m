@@ -667,10 +667,10 @@ LoginInfo *loginInfo;
     
     sqlite3* database=nil;
     if (sqlite3_open([[self dataFilePath] UTF8String], &database) != SQLITE_OK) {
-		sqlite3_close(database);
-		NSAssert(0, @"Failed to open database");
+        sqlite3_close(database);
+        NSAssert(0, @"Failed to open database");
         
-	}
+    }
     
     sqlite3_stmt *stmt = nil;
     
@@ -678,76 +678,84 @@ LoginInfo *loginInfo;
     
     NSArray *dataArrays = [[data objectForKey:@"productAllData"] objectForKey:@"elementData"];
     
-     NSLog(@"%@",dataArrays);
+    NSLog(@"%@",dataArrays);
+    
+    NSMutableArray *saveDownloadingData = [[NSMutableArray alloc] init];
+    
+    sqlite3_exec(database, "BEGIN EXCLUSIVE TRANSACTION", 0, 0, 0);
+    if(sqlite3_prepare(database, update, -1, &stmt, NULL) == SQLITE_OK)
+    {
     
     for(NSDictionary *temp in dataArrays){
-    
-     //   NSLog(@"%@",temp);
+        
+        //   NSLog(@"%@",temp);
         
         NSDictionary *goods = [temp objectForKey:@"productData"];
-        
-        if (sqlite3_prepare_v2(database, update, -1, &stmt, nil) == SQLITE_OK)
-        {
+    
             
             NSString *planId =[data objectForKey:@"planId"];
             
             NSString *image_url = [temp objectForKey:@"image_url"];
             if(![image_url isKindOfClass:[NSNull class]]){
-            NSArray *names =[image_url componentsSeparatedByString:@"/"];
-            image_url = [NSString stringWithFormat:@"imageUrl%@",names[names.count-1]];
-            image_url = [image_url stringByReplacingOccurrencesOfString:@"_" withString:@""];
+                NSArray *names =[image_url componentsSeparatedByString:@"/"];
+                image_url = [NSString stringWithFormat:@"imageUrl%@",names[names.count-1]];
+                image_url = [image_url stringByReplacingOccurrencesOfString:@"_" withString:@""];
             }
             else{
-            
+                
                 image_url = @"";
             }
             
             NSString *dapei_pic = [temp objectForKey:@"dapei_pic"];
             if(![dapei_pic isKindOfClass:[NSNull class]]){
-            NSArray *names1 =[dapei_pic componentsSeparatedByString:@"/"];
-            dapei_pic = [NSString stringWithFormat:@"dapeiPic%@",names1[names1.count-1]];
-            dapei_pic = [dapei_pic stringByReplacingOccurrencesOfString:@"_" withString:@""];
+                NSArray *names1 =[dapei_pic componentsSeparatedByString:@"/"];
+                dapei_pic = [NSString stringWithFormat:@"dapeiPic%@",names1[names1.count-1]];
+                dapei_pic = [dapei_pic stringByReplacingOccurrencesOfString:@"_" withString:@""];
             }
             else{
                 
                 dapei_pic = @"";
             }
-
+            
             
             
             NSString *hot_pic = [temp objectForKey:@"hot_pic"];
             if(![hot_pic isKindOfClass:[NSNull class]]){
-            NSArray *names2 =[hot_pic componentsSeparatedByString:@"/"];
-            hot_pic = [NSString stringWithFormat:@"hotPic%@",names2[names2.count-1]];
-            hot_pic = [hot_pic stringByReplacingOccurrencesOfString:@"_" withString:@""];
+                NSArray *names2 =[hot_pic componentsSeparatedByString:@"/"];
+                hot_pic = [NSString stringWithFormat:@"hotPic%@",names2[names2.count-1]];
+                hot_pic = [hot_pic stringByReplacingOccurrencesOfString:@"_" withString:@""];
             }
             else{
                 
                 hot_pic = @"";
             }
-
-
+            
+            
             
             NSString *product_image_url = [goods objectForKey:@"product_image_url"];
             if(![product_image_url isKindOfClass:[NSNull class]]){
-            NSArray *names3 =[product_image_url componentsSeparatedByString:@"/"];
-            product_image_url = [NSString stringWithFormat:@"productImageUrl%@",names3[names3.count-1]];
-            product_image_url = [product_image_url stringByReplacingOccurrencesOfString:@"_" withString:@""];
+                NSArray *names3 =[product_image_url componentsSeparatedByString:@"/"];
+                product_image_url = [NSString stringWithFormat:@"productImageUrl%@",names3[names3.count-1]];
+                product_image_url = [product_image_url stringByReplacingOccurrencesOfString:@"_" withString:@""];
             }
             else{
                 
                 product_image_url = @"";
             }
-
-
             
-           sqlite3_bind_text(stmt, 1,[planId UTF8String],-1,nil);
+            
+            
+            sqlite3_bind_text(stmt, 1,[planId UTF8String],-1,nil);
             sqlite3_bind_text(stmt, 2,[[temp objectForKey:@"id"] UTF8String],-1,nil);
             sqlite3_bind_text(stmt, 3, [image_url UTF8String],-1,nil);
             sqlite3_bind_text(stmt, 4, [[temp objectForKey:@"image_url_size"]  UTF8String],-1,nil);
             
-            [self saveDownloadingTable:housesId plan_id:planId localImageName:image_url image_url:[temp objectForKey:@"image_url"] image_size:[temp objectForKey:@"image_url_size"] type:@"imageUrl" elementId:[temp objectForKey:@"id"] productId:[goods objectForKey:@"product_id"] id:[self getId] status:0];
-            
+//            [self saveDownloadingTable:housesId plan_id:planId localImageName:image_url image_url:[temp objectForKey:@"image_url"] image_size:[temp objectForKey:@"image_url_size"] type:@"imageUrl" elementId:[temp objectForKey:@"id"] productId:[goods objectForKey:@"product_id"] id:[self getId] status:0];
+        
+        NSDictionary *imageUrlDictionary = @{@"housesId":housesId,@"plan_id":planId,@"localImageName":image_url,@"image_url":[temp objectForKey:@"image_url"],@"image_size":[temp objectForKey:@"image_url_size"],@"type":@"imageUrl",@"elementId":[temp objectForKey:@"id"],@"productId":[goods objectForKey:@"product_id"],@"id":[self getId],@"status":@"0"};
+        
+        [saveDownloadingData addObject:imageUrlDictionary];
+        
             sqlite3_bind_text(stmt, 5, [[goods objectForKey:@"name"]  UTF8String],-1,nil);
             sqlite3_bind_text(stmt, 6, [[goods objectForKey:@"disprice"] UTF8String],-1,nil);
             sqlite3_bind_text(stmt, 7, [[goods objectForKey:@"price"]  UTF8String],-1,nil);
@@ -760,8 +768,12 @@ LoginInfo *loginInfo;
             
             sqlite3_bind_text(stmt, 9, [daPeiSize UTF8String],-1,nil);
             
-            [self saveDownloadingTable:housesId plan_id:planId localImageName:dapei_pic image_url:[temp objectForKey:@"dapei_pic"] image_size:daPeiSize type:@"dapeiPic" elementId:[temp objectForKey:@"id"] productId:[goods objectForKey:@"product_id"] id:[self getId] status:0];
-            
+//            [self saveDownloadingTable:housesId plan_id:planId localImageName:dapei_pic image_url:[temp objectForKey:@"dapei_pic"] image_size:daPeiSize type:@"dapeiPic" elementId:[temp objectForKey:@"id"] productId:[goods objectForKey:@"product_id"] id:[self getId] status:0];
+        
+        NSDictionary *dapeiPicDictionary = @{@"housesId":housesId,@"plan_id":planId,@"localImageName":dapei_pic,@"image_url":[temp objectForKey:@"dapei_pic"],@"image_size":daPeiSize,@"type":@"dapeiPic",@"elementId":[temp objectForKey:@"id"],@"productId":[goods objectForKey:@"product_id"],@"id":[self getId],@"status":@"0"};
+        
+        [saveDownloadingData addObject:dapeiPicDictionary];
+        
             sqlite3_bind_text(stmt, 10, [hot_pic UTF8String],-1,nil);
             
             NSString *hotSize = [temp objectForKey:@"hot_pic_size"];
@@ -772,32 +784,233 @@ LoginInfo *loginInfo;
             
             sqlite3_bind_text(stmt, 11, [hotSize  UTF8String],-1,nil);
             
-            [self saveDownloadingTable:housesId plan_id:planId localImageName:hot_pic image_url:[temp objectForKey:@"hot_pic"] image_size:hotSize type:@"hotPic" elementId:[temp objectForKey:@"id"] productId:[goods objectForKey:@"product_id"] id:[self getId] status:0];
-            
+//            [self saveDownloadingTable:housesId plan_id:planId localImageName:hot_pic image_url:[temp objectForKey:@"hot_pic"] image_size:hotSize type:@"hotPic" elementId:[temp objectForKey:@"id"] productId:[goods objectForKey:@"product_id"] id:[self getId] status:0];
+        
+        
+        NSDictionary *hotPicDictionary = @{@"housesId":housesId,@"plan_id":planId,@"localImageName":hot_pic,@"image_url":[temp objectForKey:@"hot_pic"],@"image_size":hotSize,@"type":@"hotPic",@"elementId":[temp objectForKey:@"id"],@"productId":[goods objectForKey:@"product_id"],@"id":[self getId],@"status":@"0"};
+        
+        [saveDownloadingData addObject:hotPicDictionary];
+        
             sqlite3_bind_text(stmt, 12, [product_image_url UTF8String],-1,nil);
             sqlite3_bind_text(stmt, 13, [[goods objectForKey:@"product_image_url_size"]  UTF8String],-1,nil);
             
-            [self saveDownloadingTable:housesId plan_id:planId localImageName:product_image_url image_url:[goods objectForKey:@"product_image_url"] image_size:[goods objectForKey:@"product_image_url_size"] type:@"productImageUrl" elementId:[temp objectForKey:@"id"] productId:[goods objectForKey:@"product_id"] id:[self getId] status:0];
-            
+//            [self saveDownloadingTable:housesId plan_id:planId localImageName:product_image_url image_url:[goods objectForKey:@"product_image_url"] image_size:[goods objectForKey:@"product_image_url_size"] type:@"productImageUrl" elementId:[temp objectForKey:@"id"] productId:[goods objectForKey:@"product_id"] id:[self getId] status:0];
+        
+        
+        NSDictionary *productImageUrlDictionary = @{@"housesId":housesId,@"plan_id":planId,@"localImageName":product_image_url,@"image_url":[goods objectForKey:@"product_image_url"],@"image_size":[goods objectForKey:@"product_image_url_size"],@"type":@"productImageUrl",@"elementId":[temp objectForKey:@"id"],@"productId":[goods objectForKey:@"product_id"],@"id":[self getId],@"status":@"0"};
+        
+        [saveDownloadingData addObject:productImageUrlDictionary];
+        
             sqlite3_bind_text(stmt, 14, [[goods objectForKey:@"product_id"]  UTF8String],-1,nil);
             sqlite3_bind_text(stmt, 15, [[temp objectForKey:@"layer"]  UTF8String],-1,nil);
+    
+        
+        if (sqlite3_step(stmt) != SQLITE_DONE) NSLog(@"DB not updated. Error: %s",sqlite3_errmsg(database));
+        if (sqlite3_reset(stmt) != SQLITE_OK) NSLog(@"SQL Error: %s",sqlite3_errmsg(database));
+    }
+    }
+    if (sqlite3_finalize(stmt) != SQLITE_OK) NSLog(@"SQL Error: %s",sqlite3_errmsg(database));
+    if (sqlite3_exec(database, "COMMIT TRANSACTION", 0, 0, 0) != SQLITE_OK) NSLog(@"SQL Error: %s",sqlite3_errmsg(database));
+    sqlite3_close(database);
+    
+    
+    [self saveDownloadingTable:saveDownloadingData];
+}
+
++(void)saveDownloadingTable:(NSMutableArray *)data{
+    
+    
+    
+    sqlite3* database=nil;
+    if (sqlite3_open([[self dataFilePath] UTF8String], &database) != SQLITE_OK) {
+        sqlite3_close(database);
+        NSAssert(@"%@", @"Failed to open database");
+        
+    }
+    
+    sqlite3_stmt *stmt;
+    
+    char *update = "insert or replace into download_downloadingTable(houses_id,plan_id,element_id,product_id,localImageName,image_url,image_size,type,status,id) values (?,?,?,?,?,?,?,?,?,?);";
+    
+    
+    sqlite3_exec(database, "BEGIN EXCLUSIVE TRANSACTION", 0, 0, 0);
+    if(sqlite3_prepare(database, update, -1, &stmt, NULL) == SQLITE_OK)
+    {
+        
+        
+        for (NSDictionary *temp in data) {
+        
+        NSString *houses_id = [temp objectForKey:@"housesId"];
+        NSString *plan_id = [temp objectForKey:@"plan_id"];
+        NSString *elementId = [temp objectForKey:@"elementId"];
+        NSString *productId = [temp objectForKey:@"productId"];
+        NSString *localImageName = [temp objectForKey:@"localImageName"];
+        NSString *image_url = [temp objectForKey:@"image_url"];
+        NSString *image_size = [temp objectForKey:@"image_size"];
+        NSString *type = [temp objectForKey:@"type"];
+        NSString *status = [temp objectForKey:@"status"];
+        NSString *idStr = [temp objectForKey:@"id"];
             
+        sqlite3_bind_text(stmt, 1,[houses_id UTF8String],-1,nil);
+        sqlite3_bind_text(stmt, 2,[plan_id UTF8String],-1,nil);
+        sqlite3_bind_text(stmt, 3, [elementId UTF8String],-1,nil);
+        sqlite3_bind_text(stmt, 4, [productId  UTF8String],-1,nil);
+        sqlite3_bind_text(stmt, 5, [localImageName UTF8String],-1,nil);
+        sqlite3_bind_text(stmt, 6, [image_url  UTF8String],-1,nil);
+        sqlite3_bind_text(stmt, 7, [image_size  UTF8String],-1,nil);
+        sqlite3_bind_text(stmt, 8, [type UTF8String],-1,nil);
+        sqlite3_bind_int(stmt, 9, [status intValue]);
+        sqlite3_bind_text(stmt,10, [idStr UTF8String],-1,nil);
+
+            if (sqlite3_step(stmt) != SQLITE_DONE) NSLog(@"DB not updated. Error: %s",sqlite3_errmsg(database));
+            if (sqlite3_reset(stmt) != SQLITE_OK) NSLog(@"SQL Error: %s",sqlite3_errmsg(database));
         }
         
-        if(sqlite3_step(stmt)!=SQLITE_DONE){
-            
-            NSLog(@"%@",@"插入失败");
-            
+    }
+    
+    if (sqlite3_finalize(stmt) != SQLITE_OK) NSLog(@"SQL Error: %s",sqlite3_errmsg(database));
+    if (sqlite3_exec(database, "COMMIT TRANSACTION", 0, 0, 0) != SQLITE_OK) NSLog(@"SQL Error: %s",sqlite3_errmsg(database));
+    sqlite3_close(database);
+    
+}
++(void)saveDataToDefaultTable:(NSArray *)dataArgs planId:(NSString *)planId angle:(NSString *)angle{
+    
+    
+    sqlite3* database=nil;
+    if (sqlite3_open([[self dataFilePath] UTF8String], &database) != SQLITE_OK) {
+        sqlite3_close(database);
+        NSAssert(0, @"Failed to open database");
+        
+    }
+    
+    sqlite3_stmt *stmt =nil;
+    
+    NSString *maopeiPath=@"";
+    NSString *pic = @"";
+    
+    NSMutableArray *dataSaveing = [[NSMutableArray alloc] init];
+    
+    if(dataArgs.count>0){
+        
+        
+        
+        NSDictionary *data = dataArgs[0];
+        
+        pic = [data objectForKey:@"pic"];
+        maopeiPath = [data objectForKey:@"pic"];;
+        
+        if(![pic isKindOfClass:[NSNull class]]){
+            NSArray *names2 =[pic componentsSeparatedByString:@"/"];
+            pic = [NSString stringWithFormat:@"pic%@",names2[names2.count-1]];
         }
         else{
-            NSLog(@"%@",@"插入成功");
+            
+            pic = @"";
         }
+        
+        
+        maopeiPath = [imageUrl stringByAppendingString:maopeiPath];
+        
+        // [downloadImage downloadImage:maopeiPath name:pic];
+        
+        
+        NSDictionary *dataTemp = [[NSDictionary alloc] initWithObjectsAndKeys:maopeiPath,@"path",pic,@"name", nil];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            AsyncImageDownloader *downloader = [[AsyncImageDownloader alloc] initWithMediaURL:maopeiPath data:dataTemp tempData:nil successBlock:^(UIImage *image,NSDictionary *data,NSDictionary *dataTemp){
+                
+                NSLog(@"%@",@"毛坯房下载成功");
+                
+            } failBlock:^(NSError *error){
+                
+                NSLog(@"%@",@"毛坯房下载失败");
+            }];
+            
+            [downloader startDownload];
+        });
+        
+        
+    }
+    
+    // create table if not exists download_planDefaultTable(plan_id text,angle text,dapei_pic text,element_id text,hot_pic text,layer text);";
+    
+    char *update = "insert or replace into download_planDefaultTable (plan_id,angle,dapei_pic,element_id,hot_pic,layer,pic,type) values (?,?,?,?,?,?,?,?);";
+    
+    sqlite3_exec(database, "BEGIN EXCLUSIVE TRANSACTION", 0, 0, 0);
+    if(sqlite3_prepare(database, update, -1, &stmt, NULL) == SQLITE_OK)
+    {
+    
+    for(int i =0;i<dataArgs.count;i++){
+        
+        NSDictionary *data = dataArgs[i];
+        
+        NSString *dapei_pic = [data objectForKey:@"dapei_pic"];
+        
+        if(![dapei_pic isKindOfClass:[NSNull class]]){
+            NSArray *names1 =[dapei_pic componentsSeparatedByString:@"/"];
+            dapei_pic = [NSString stringWithFormat:@"dapeiPic%@",names1[names1.count-1]];
+        }
+        else{
+            
+            dapei_pic = @"";
+        }
+        
+        
+        
+        NSString *hot_pic = [data objectForKey:@"hot_pic"];
+        if(![hot_pic isKindOfClass:[NSNull class]]){
+            NSArray *names2 =[hot_pic componentsSeparatedByString:@"/"];
+            hot_pic = [NSString stringWithFormat:@"hotPic%@",names2[names2.count-1]];
+        }
+        else{
+            
+            hot_pic = @"";
+        }
+        
+        NSString *element_id = [data objectForKey:@"element_id"];
+        NSString *layer = [data objectForKey:@"layer"];
+        
+//        [self saveDownloadingTable:planId plan_id:planId localImageName:hot_pic image_url:[data objectForKey:@"hot_pic"] image_size:@"0" type:@"hotPic" elementId:@"" productId:@"" id:[self getId] status:0];
+//        [self saveDownloadingTable:planId plan_id:planId localImageName:dapei_pic image_url:[data objectForKey:@"dapei_pic"] image_size:@"0" type:@"dapei_pic" elementId:@"" productId:@"" id:[self getId] status:0];
+//        
+    
+        NSDictionary *hotPicDictionary  = @{@"housesId":planId,@"plan_id":planId,@"localImageName":hot_pic,@"image_url":[data objectForKey:@"hot_pic"],@"image_size":@"0",@"type":@"",@"elementId":@"",@"productId":@"",@"id":@"",@"status":@"0"};
+        
+        [dataSaveing addObject:hotPicDictionary ];
+        
+        NSDictionary *dapei_picDictionary  = @{@"housesId":planId,@"plan_id":planId,@"localImageName":dapei_pic,@"image_url":[data objectForKey:@"dapei_pic"],@"image_size":@"0",@"type":@"",@"elementId":@"",@"productId":@"",@"id":@"",@"status":@"0"};
+        
+        [dataSaveing addObject:dapei_picDictionary];
+            
+            
+            sqlite3_bind_text(stmt, 1,[planId UTF8String],-1,nil);
+            sqlite3_bind_text(stmt, 2,[angle UTF8String],-1,nil);
+            sqlite3_bind_text(stmt, 3, [dapei_pic UTF8String],-1,nil);
+            sqlite3_bind_text(stmt, 4, [element_id  UTF8String],-1,nil);
+            sqlite3_bind_text(stmt, 5, [hot_pic UTF8String],-1,nil);
+            sqlite3_bind_text(stmt, 6, [layer UTF8String],-1,nil);
+            sqlite3_bind_text(stmt, 7, [pic UTF8String],-1,nil);
+            sqlite3_bind_int(stmt, 8, [[data objectForKey:@"type"] intValue]);
+            
+      
+        
+        if (sqlite3_step(stmt) != SQLITE_DONE) NSLog(@"DB not updated. Error: %s",sqlite3_errmsg(database));
+        if (sqlite3_reset(stmt) != SQLITE_OK) NSLog(@"SQL Error: %s",sqlite3_errmsg(database));
+        
+    }
     
     }
-    sqlite3_reset(stmt);
-    sqlite3_finalize(stmt);
+    
+    if (sqlite3_finalize(stmt) != SQLITE_OK) NSLog(@"SQL Error: %s",sqlite3_errmsg(database));
+    if (sqlite3_exec(database, "COMMIT TRANSACTION", 0, 0, 0) != SQLITE_OK) NSLog(@"SQL Error: %s",sqlite3_errmsg(database));
     sqlite3_close(database);
+    
+    
+    [self saveDownloadingTable:dataSaveing];
 }
+
 +(NSString *)getId{
     
     NSString *idStr =@"";
@@ -811,62 +1024,57 @@ LoginInfo *loginInfo;
     
     return  idStr;
 }
-+(void)saveDownloadingTable:(NSString *)houses_id plan_id:(NSString *)plan_id localImageName:(NSString *)localImageName
-                  image_url:(NSString *)image_url image_size:(NSString *)image_size type:(NSString *)type elementId:(NSString *)elementId productId:(NSString *)productId id:(NSString *)idStr status:(NSNumber *)status{
-
-    
-    
-    sqlite3* database=nil;
-    if (sqlite3_open([[self dataFilePath] UTF8String], &database) != SQLITE_OK) {
-		sqlite3_close(database);
-		NSAssert(@"%@", @"Failed to open database");
-        
-	}
-    
-    sqlite3_stmt *stmt;
-    
-    if([localImageName isEqualToString:@"dapeiPic53c5e3ab5522f.png"]){
-    
-        NSLog(@"%@",image_url);
-    }
-    
-    char *update = "insert or replace into download_downloadingTable(houses_id,plan_id,element_id,product_id,localImageName,image_url,image_size,type,status,id) values (?,?,?,?,?,?,?,?,?,?);";
-    
-    
-        if (sqlite3_prepare_v2(database, update, -1, &stmt, nil) == SQLITE_OK)
-        {
-           
-            
-            
-            
-            sqlite3_bind_text(stmt, 1,[houses_id UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 2,[plan_id UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 3, [elementId UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 4, [productId  UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 5, [localImageName UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 6, [image_url  UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 7, [image_size  UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 8, [type UTF8String],-1,nil);
-            sqlite3_bind_int(stmt, 9, [status intValue]);
-            sqlite3_bind_text(stmt,10, [idStr UTF8String],-1,nil);
-            
-        }
-        
-        if(sqlite3_step(stmt)!=SQLITE_DONE){
-            
-            NSLog(@"%@",@"插入失败");
-            
-        }
-        else{
-            NSLog(@"%@",@"插入成功");
-        }
-        
-
-    sqlite3_reset(stmt);
-    sqlite3_finalize(stmt);
-    sqlite3_close(database);
-
-}
+//+(void)saveDownloadingTable:(NSString *)houses_id plan_id:(NSString *)plan_id localImageName:(NSString *)localImageName
+//                  image_url:(NSString *)image_url image_size:(NSString *)image_size type:(NSString *)type elementId:(NSString *)elementId productId:(NSString *)productId id:(NSString *)idStr status:(NSNumber *)status{
+//
+//    
+//    
+//    sqlite3* database=nil;
+//    if (sqlite3_open([[self dataFilePath] UTF8String], &database) != SQLITE_OK) {
+//		sqlite3_close(database);
+//		NSAssert(@"%@", @"Failed to open database");
+//        
+//	}
+//    
+//    sqlite3_stmt *stmt;
+//    
+//    char *update = "insert or replace into download_downloadingTable(houses_id,plan_id,element_id,product_id,localImageName,image_url,image_size,type,status,id) values (?,?,?,?,?,?,?,?,?,?);";
+//    
+//    
+//        if (sqlite3_prepare_v2(database, update, -1, &stmt, nil) == SQLITE_OK)
+//        {
+//           
+//            
+//            
+//            
+//            sqlite3_bind_text(stmt, 1,[houses_id UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 2,[plan_id UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 3, [elementId UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 4, [productId  UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 5, [localImageName UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 6, [image_url  UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 7, [image_size  UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 8, [type UTF8String],-1,nil);
+//            sqlite3_bind_int(stmt, 9, [status intValue]);
+//            sqlite3_bind_text(stmt,10, [idStr UTF8String],-1,nil);
+//            
+//        }
+//        
+//        if(sqlite3_step(stmt)!=SQLITE_DONE){
+//            
+//            NSLog(@"%@",@"插入失败");
+//            
+//        }
+//        else{
+//            NSLog(@"%@",@"插入成功");
+//        }
+//        
+//
+//    sqlite3_reset(stmt);
+//    sqlite3_finalize(stmt);
+//    sqlite3_close(database);
+//
+//}
 +(BOOL)updateDownloadingTable:(NSNumber *)status localImageName:(NSString *)localImageName{
 
     bool flag  = false;
@@ -1166,133 +1374,133 @@ LoginInfo *loginInfo;
     return dataArray;
 }
 
-+(void)saveDataToDefaultTable:(NSArray *)dataArgs planId:(NSString *)planId angle:(NSString *)angle{
-    
-    
-    sqlite3* database=nil;
-    if (sqlite3_open([[self dataFilePath] UTF8String], &database) != SQLITE_OK) {
-        sqlite3_close(database);
-        NSAssert(0, @"Failed to open database");
-        
-    }
-    
-    sqlite3_stmt *stmt =nil;
-    
-    NSString *maopeiPath=@"";
-    NSString *pic = @"";
-
-    
-    if(dataArgs.count>0){
-        
-       
-    
-        NSDictionary *data = dataArgs[0];
-        
-        pic = [data objectForKey:@"pic"];
-        maopeiPath = [data objectForKey:@"pic"];;
-        
-        if(![pic isKindOfClass:[NSNull class]]){
-            NSArray *names2 =[pic componentsSeparatedByString:@"/"];
-            pic = [NSString stringWithFormat:@"pic%@",names2[names2.count-1]];
-        }
-        else{
-            
-            pic = @"";
-        }
-
-      
-        maopeiPath = [imageUrl stringByAppendingString:maopeiPath];
-        
-        // [downloadImage downloadImage:maopeiPath name:pic];
-        
-        
-        NSDictionary *dataTemp = [[NSDictionary alloc] initWithObjectsAndKeys:maopeiPath,@"path",pic,@"name", nil];
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            AsyncImageDownloader *downloader = [[AsyncImageDownloader alloc] initWithMediaURL:maopeiPath data:dataTemp tempData:nil successBlock:^(UIImage *image,NSDictionary *data,NSDictionary *dataTemp){
-                
-                NSLog(@"%@",@"毛坯房下载成功");
-                
-            } failBlock:^(NSError *error){
-                
-                  NSLog(@"%@",@"毛坯房下载失败");
-            }];
-            
-            [downloader startDownload];
-        });
-
-        
-    }
-    
-   // create table if not exists download_planDefaultTable(plan_id text,angle text,dapei_pic text,element_id text,hot_pic text,layer text);";
-    
-    char *update = "insert or replace into download_planDefaultTable (plan_id,angle,dapei_pic,element_id,hot_pic,layer,pic,type) values (?,?,?,?,?,?,?,?);";
-    
-    for(int i =0;i<dataArgs.count;i++){
-        
-        NSDictionary *data = dataArgs[i];
-        
-        NSString *dapei_pic = [data objectForKey:@"dapei_pic"];
-        
-        if(![dapei_pic isKindOfClass:[NSNull class]]){
-            NSArray *names1 =[dapei_pic componentsSeparatedByString:@"/"];
-            dapei_pic = [NSString stringWithFormat:@"dapeiPic%@",names1[names1.count-1]];
-        }
-        else{
-            
-            dapei_pic = @"";
-        }
-        
-        
-        
-        NSString *hot_pic = [data objectForKey:@"hot_pic"];
-        if(![hot_pic isKindOfClass:[NSNull class]]){
-            NSArray *names2 =[hot_pic componentsSeparatedByString:@"/"];
-            hot_pic = [NSString stringWithFormat:@"hotPic%@",names2[names2.count-1]];
-        }
-        else{
-            
-            hot_pic = @"";
-        }
-        
-        NSString *element_id = [data objectForKey:@"element_id"];
-        NSString *layer = [data objectForKey:@"layer"];
-        
-      [self saveDownloadingTable:planId plan_id:planId localImageName:hot_pic image_url:[data objectForKey:@"hot_pic"] image_size:@"0" type:@"hotPic" elementId:@"" productId:@"" id:[self getId] status:0];
-      [self saveDownloadingTable:planId plan_id:planId localImageName:dapei_pic image_url:[data objectForKey:@"dapei_pic"] image_size:@"0" type:@"dapei_pic" elementId:@"" productId:@"" id:[self getId] status:0];
-        
-        if (sqlite3_prepare_v2(database, update, -1, &stmt, nil) == SQLITE_OK)
-        {
-            
-            
-            sqlite3_bind_text(stmt, 1,[planId UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 2,[angle UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 3, [dapei_pic UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 4, [element_id  UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 5, [hot_pic UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 6, [layer UTF8String],-1,nil);
-            sqlite3_bind_text(stmt, 7, [pic UTF8String],-1,nil);
-            sqlite3_bind_int(stmt, 8, [[data objectForKey:@"type"] intValue]);
-
-        }
-        
-        if(sqlite3_step(stmt)!=SQLITE_DONE){
-            
-            NSLog(@"%@",@"插入默认数据失败");
-            
-        }
-        else{
-            NSLog(@"%@",@"插入默认数据成功");
-        }
-        
-    }
-    
-    sqlite3_reset(stmt);
-    sqlite3_finalize(stmt);
-    sqlite3_close(database);
-}
+//+(void)saveDataToDefaultTable:(NSArray *)dataArgs planId:(NSString *)planId angle:(NSString *)angle{
+//    
+//    
+//    sqlite3* database=nil;
+//    if (sqlite3_open([[self dataFilePath] UTF8String], &database) != SQLITE_OK) {
+//        sqlite3_close(database);
+//        NSAssert(0, @"Failed to open database");
+//        
+//    }
+//    
+//    sqlite3_stmt *stmt =nil;
+//    
+//    NSString *maopeiPath=@"";
+//    NSString *pic = @"";
+//
+//    
+//    if(dataArgs.count>0){
+//        
+//       
+//    
+//        NSDictionary *data = dataArgs[0];
+//        
+//        pic = [data objectForKey:@"pic"];
+//        maopeiPath = [data objectForKey:@"pic"];;
+//        
+//        if(![pic isKindOfClass:[NSNull class]]){
+//            NSArray *names2 =[pic componentsSeparatedByString:@"/"];
+//            pic = [NSString stringWithFormat:@"pic%@",names2[names2.count-1]];
+//        }
+//        else{
+//            
+//            pic = @"";
+//        }
+//
+//      
+//        maopeiPath = [imageUrl stringByAppendingString:maopeiPath];
+//        
+//        // [downloadImage downloadImage:maopeiPath name:pic];
+//        
+//        
+//        NSDictionary *dataTemp = [[NSDictionary alloc] initWithObjectsAndKeys:maopeiPath,@"path",pic,@"name", nil];
+//        
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            AsyncImageDownloader *downloader = [[AsyncImageDownloader alloc] initWithMediaURL:maopeiPath data:dataTemp tempData:nil successBlock:^(UIImage *image,NSDictionary *data,NSDictionary *dataTemp){
+//                
+//                NSLog(@"%@",@"毛坯房下载成功");
+//                
+//            } failBlock:^(NSError *error){
+//                
+//                  NSLog(@"%@",@"毛坯房下载失败");
+//            }];
+//            
+//            [downloader startDownload];
+//        });
+//
+//        
+//    }
+//    
+//   // create table if not exists download_planDefaultTable(plan_id text,angle text,dapei_pic text,element_id text,hot_pic text,layer text);";
+//    
+//    char *update = "insert or replace into download_planDefaultTable (plan_id,angle,dapei_pic,element_id,hot_pic,layer,pic,type) values (?,?,?,?,?,?,?,?);";
+//    
+//    for(int i =0;i<dataArgs.count;i++){
+//        
+//        NSDictionary *data = dataArgs[i];
+//        
+//        NSString *dapei_pic = [data objectForKey:@"dapei_pic"];
+//        
+//        if(![dapei_pic isKindOfClass:[NSNull class]]){
+//            NSArray *names1 =[dapei_pic componentsSeparatedByString:@"/"];
+//            dapei_pic = [NSString stringWithFormat:@"dapeiPic%@",names1[names1.count-1]];
+//        }
+//        else{
+//            
+//            dapei_pic = @"";
+//        }
+//        
+//        
+//        
+//        NSString *hot_pic = [data objectForKey:@"hot_pic"];
+//        if(![hot_pic isKindOfClass:[NSNull class]]){
+//            NSArray *names2 =[hot_pic componentsSeparatedByString:@"/"];
+//            hot_pic = [NSString stringWithFormat:@"hotPic%@",names2[names2.count-1]];
+//        }
+//        else{
+//            
+//            hot_pic = @"";
+//        }
+//        
+//        NSString *element_id = [data objectForKey:@"element_id"];
+//        NSString *layer = [data objectForKey:@"layer"];
+//        
+//      [self saveDownloadingTable:planId plan_id:planId localImageName:hot_pic image_url:[data objectForKey:@"hot_pic"] image_size:@"0" type:@"hotPic" elementId:@"" productId:@"" id:[self getId] status:0];
+//      [self saveDownloadingTable:planId plan_id:planId localImageName:dapei_pic image_url:[data objectForKey:@"dapei_pic"] image_size:@"0" type:@"dapei_pic" elementId:@"" productId:@"" id:[self getId] status:0];
+//        
+//        if (sqlite3_prepare_v2(database, update, -1, &stmt, nil) == SQLITE_OK)
+//        {
+//            
+//            
+//            sqlite3_bind_text(stmt, 1,[planId UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 2,[angle UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 3, [dapei_pic UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 4, [element_id  UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 5, [hot_pic UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 6, [layer UTF8String],-1,nil);
+//            sqlite3_bind_text(stmt, 7, [pic UTF8String],-1,nil);
+//            sqlite3_bind_int(stmt, 8, [[data objectForKey:@"type"] intValue]);
+//
+//        }
+//        
+//        if(sqlite3_step(stmt)!=SQLITE_DONE){
+//            
+//            NSLog(@"%@",@"插入默认数据失败");
+//            
+//        }
+//        else{
+//            NSLog(@"%@",@"插入默认数据成功");
+//        }
+//        
+//    }
+//    
+//    sqlite3_reset(stmt);
+//    sqlite3_finalize(stmt);
+//    sqlite3_close(database);
+//}
 
 +(NSDictionary *)getDataToDefaultTable:(NSString *)planId angle:(NSString *)angle{
     

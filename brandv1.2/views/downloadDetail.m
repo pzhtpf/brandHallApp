@@ -581,9 +581,7 @@ UIPopoverController *popControllerDownloadDetail;
         NSArray *names = [imageUrl1 componentsSeparatedByString:@"/"];
         NSString *name = [NSString stringWithFormat:@"planTable%@",names[names.count-1]];
         if(self.planDetailImageView.image !=nil){
-            NSData* data = UIImagePNGRepresentation(self.planDetailImageView.image);
-            [downloadImage saveImage:name image:data];
-        
+        //    [downloadImage saveImageWithImage:self.planDetailImageView.image name:name];
         }
     }
     
@@ -604,11 +602,8 @@ UIPopoverController *popControllerDownloadDetail;
                 NSString *imageUrl1 =  [temp1 objectForKey:@"imageUrl"];
                 NSArray *names = [imageUrl1 componentsSeparatedByString:@"/"];
                 NSString *name = [NSString stringWithFormat:@"planTable%@",names[names.count-1]];
-                [self captureView:allImageView[index] name:name];
+             //   [downloadImage saveImageWithImage:((UIImageView *)allImageView[index]).image name:name];
             }
-            
-
-        
         }
     
     NSString *housesId =[dataArgs objectForKey:@"id"];
@@ -670,6 +665,8 @@ UIPopoverController *popControllerDownloadDetail;
     if(!loginInfo.downloadList)
         loginInfo.downloadList = [[NSMutableDictionary alloc] init];
     
+    
+    [globalContext saveDownloadData:dataArray];           //先将数据保存到数据库中
     [loginInfo.downloadList setValue:dataArray forKey:housesId];
     [loginInfo.dataFromPlanTable setValue:dataArray forKey:housesId];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateView" object:nil];
@@ -957,12 +954,6 @@ UIPopoverController *popControllerDownloadDetail;
     }
     [self usedSpaceAndfreeSpace:0 total:totalCapticy];
 
-}
--(void)captureView:(UIImageView *)view name:(NSString *)name{
- 
-    UIImage *image = view.image;
-    NSData* data = UIImagePNGRepresentation(image);
-    [downloadImage saveImage:name image:data];
 }
 -(double)getTotal:(NSArray *)temp3{
     double total = 0;
