@@ -8,7 +8,6 @@
 
 #import "loginViewController.h"
 #import "StockData.h"
-#import "LoginInfo.h"
 #import "DBHelper.h"
 #import "AFNetworking.h"
 #import "Define.h"
@@ -16,6 +15,7 @@
 #import "pageControl.h"
 #import "downloadImage.h"
 #import "globalContext.h"
+#import "AsyncImageDownloader.h"
 #define ACCEPTABLE_CHARECTERS @"1234567890"
 
 @interface loginViewController ()
@@ -23,8 +23,8 @@
 @end
 
 @implementation loginViewController
+@synthesize loginInfo;
 UIAlertView *alertView;
-LoginInfo *loginInfo;
 bool isLogin = true;
 bool beginEdit = false;
 bool isPhoneRegister = true;
@@ -423,7 +423,7 @@ int count = 60;
         
       NSString  *enableDownload = [rootDic objectForKey:@"enableDownload"];
     
-       loginInfo.portrait = [rootDic objectForKey:@"portrait"];
+    //   loginInfo.portrait = [rootDic objectForKey:@"portrait"];
     
        loginInfo.userId = [rootDic objectForKey:@"userId"];
     
@@ -432,7 +432,7 @@ int count = 60;
         loginInfo.userAccount = self.account.text;
     
         if([enableDownload isEqualToString:@"false"])
-            loginInfo.enableDownload = 1;
+            loginInfo.enableDownload = 0;
         else
             loginInfo.enableDownload = 1;
         
@@ -444,23 +444,57 @@ int count = 60;
             [self.password setText:@""];
         }
         loginInfo.serverUrl = [rootDic objectForKey:@"serverUrl"];
+    
         
+        NSString *url = [rootDic objectForKey:@"portrait"];
+    
+       [downloadImage removeImage:loginInfo.portrait];
+    
+    
+    if(url){
+        
+        NSString *path = url;
+        NSString *localImageName  = @"userPortrait.png";
+        
+        if([loginInfo.userType isEqualToString:@"normal"]){
+        
+        url = [NSString stringWithFormat:@"%@%@",imageUrl,url];
+        NSArray *names =[url componentsSeparatedByString:@"/"];
+        localImageName = names[names.count-1];
+        }
+        
+        NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:path,@"path",localImageName,@"name", nil];
+        
+        
+        AsyncImageDownloader *downloader = [[AsyncImageDownloader alloc] initWithMediaURL:path data:data tempData:nil successBlock:^(UIImage *image,NSDictionary *data,NSDictionary *dataTemp){
+            
+            loginInfo.portrait = localImageName;
+            [DBHelper settingSaveToDB];
+            NSLog(@"%@",@"用户头像下载成功");
+            
+        } failBlock:^(NSError *error){
+            
+            NSLog(@"%@",@"用户头像下载失败");
+            
+            loginInfo.portrait = url;
+            [DBHelper settingSaveToDB];
+        }];
+        
+        [downloader startDownload];
+    }
+    else{
+    
         [DBHelper settingSaveToDB];
-        
+    }
+    
         [[NSNotificationCenter defaultCenter] postNotificationName:@"removeMessageNotification" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"removeNotification" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"unloadView" object:nil];
         
-        
-        //   [self performSegueWithIdentifier:@"loginSuccess" sender:self];
-        //  [self dismissViewControllerAnimated:YES completion:^{}];
-        [self closeMethod:nil];
-        [globalContext setCookies:[rootDic objectForKey:@"userId"]];
-        
-        //  UITabBarController *tab = [self.storyboard instantiateViewControllerWithIdentifier:@"tab"];
-        
 
-    
+        [globalContext setCookies:[rootDic objectForKey:@"userId"]];
+        [self closeMethod:nil];
+
 }
 -(void)showAlertView:(NSString *)message{     //显示提示框
     

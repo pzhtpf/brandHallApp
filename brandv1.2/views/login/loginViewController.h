@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CWPageModel.h"
 #import <ShareSDK/ShareSDK.h>
+#import "LoginInfo.h"
 
 @interface loginViewController : UIViewController<UIPageViewControllerDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *account;
@@ -17,6 +18,7 @@
 - (IBAction)login:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *remeberPassword;
 - (IBAction)close:(id)sender;
+@property (strong, nonatomic) LoginInfo *loginInfo;
 
 - (IBAction)remeberPasswordAction:(id)sender;
 @property (nonatomic,retain) UIPageViewController *pageController;

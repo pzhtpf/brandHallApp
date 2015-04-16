@@ -20,6 +20,7 @@
 #import "settingViewController.h"
 #import "UIImage+Resize.h"
 #import "AppDelegate.h"
+#import "userCentreViewController.h"
 
 @interface lanuchImageController ()
 
@@ -46,6 +47,7 @@ int lastOffsetX = 0;
 UIImage *shareImage;
 NSString *shareText;
 NSMutableArray *tabItemArray;
+userCentreViewController *_userCentreViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,6 +78,7 @@ NSMutableArray *tabItemArray;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addInfoView:) name:@"addInfoView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLoadView:) name:@"startLoadView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUITapGestureRecognizer:) name:@"addUITapGestureRecognizer" object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goUserCentre:) name:@"goUserCentre" object:nil];
 
         
         NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(getLanuchData:) object:nil];
@@ -759,6 +762,26 @@ NSMutableArray *tabItemArray;
 
     
 }
+-(void)goUserCentre:(id)sender{
+    
+    _userCentreViewController = [[userCentreViewController alloc] init];
+    _userCentreViewController.view.frame = CGRectMake(0, 0, 1024, 768);
+    
+    UIWindow* window = [UIApplication sharedApplication].keyWindow;
+    
+    
+    
+    if (!window)
+        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    
+    
+    NSArray *subViews = [window subviews];
+    
+    [[subViews objectAtIndex:subViews.count-1] addSubview:_userCentreViewController.view];
+    
+    
+}
+
 - (void)searchAction:(id)sender {
     
     //   UIButton *x =sender;

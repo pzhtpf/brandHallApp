@@ -126,6 +126,11 @@
 		187B27D91A6E05E300FD2AC7 /* productDetailBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 187B27D81A6E05E300FD2AC7 /* productDetailBack.png */; };
 		187B27DF1A6E591900FD2AC7 /* LDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187B27DC1A6E591900FD2AC7 /* LDProgressView.m */; };
 		187B27E01A6E591900FD2AC7 /* UIColor+RGBValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 187B27DE1A6E591900FD2AC7 /* UIColor+RGBValues.m */; };
+		187CA16A1ADFC9510060FF85 /* userCentreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187CA1681ADFC9510060FF85 /* userCentreViewController.m */; };
+		187CA16B1ADFC9510060FF85 /* userCentreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187CA1691ADFC9510060FF85 /* userCentreViewController.xib */; };
+		187CA16F1ADFC96E0060FF85 /* defaultHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 187CA16C1ADFC96E0060FF85 /* defaultHead.png */; };
+		187CA1701ADFC96E0060FF85 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 187CA16D1ADFC96E0060FF85 /* logout.png */; };
+		187CA1711ADFC96E0060FF85 /* userCentreMainBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 187CA16E1ADFC96E0060FF85 /* userCentreMainBack.png */; };
 		1887647F1A7B824800513C8E /* upView.png in Resources */ = {isa = PBXBuildFile; fileRef = 1887647E1A7B824800513C8E /* upView.png */; };
 		1889805F19FA4A84005EEEFB /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889803B19FA4A84005EEEFB /* AFHTTPRequestOperation.m */; };
 		1889806019FA4A84005EEEFB /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889803D19FA4A84005EEEFB /* AFHTTPRequestOperationManager.m */; };
@@ -511,6 +516,12 @@
 		187B27DC1A6E591900FD2AC7 /* LDProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDProgressView.m; sourceTree = "<group>"; };
 		187B27DD1A6E591900FD2AC7 /* UIColor+RGBValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RGBValues.h"; sourceTree = "<group>"; };
 		187B27DE1A6E591900FD2AC7 /* UIColor+RGBValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBValues.m"; sourceTree = "<group>"; };
+		187CA1671ADFC9510060FF85 /* userCentreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = userCentreViewController.h; path = views/login/userCentreViewController.h; sourceTree = "<group>"; };
+		187CA1681ADFC9510060FF85 /* userCentreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = userCentreViewController.m; path = views/login/userCentreViewController.m; sourceTree = "<group>"; };
+		187CA1691ADFC9510060FF85 /* userCentreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = userCentreViewController.xib; path = views/login/userCentreViewController.xib; sourceTree = "<group>"; };
+		187CA16C1ADFC96E0060FF85 /* defaultHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHead.png; sourceTree = "<group>"; };
+		187CA16D1ADFC96E0060FF85 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		187CA16E1ADFC96E0060FF85 /* userCentreMainBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userCentreMainBack.png; sourceTree = "<group>"; };
 		1887647E1A7B824800513C8E /* upView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upView.png; sourceTree = "<group>"; };
 		1889803A19FA4A84005EEEFB /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		1889803B19FA4A84005EEEFB /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -1344,6 +1355,9 @@
 		189EDB7819B8104500EC8C96 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				187CA1671ADFC9510060FF85 /* userCentreViewController.h */,
+				187CA1681ADFC9510060FF85 /* userCentreViewController.m */,
+				187CA1691ADFC9510060FF85 /* userCentreViewController.xib */,
 				189EDB7919B8108800EC8C96 /* loginViewController.h */,
 				189EDB7A19B8108800EC8C96 /* loginViewController.m */,
 			);
@@ -1645,6 +1659,9 @@
 		18E3609F1999EAD4000BB855 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				187CA16C1ADFC96E0060FF85 /* defaultHead.png */,
+				187CA16D1ADFC96E0060FF85 /* logout.png */,
+				187CA16E1ADFC96E0060FF85 /* userCentreMainBack.png */,
 				186D35351A64F31B005960A6 /* lanuchImages */,
 				1865B8731A63BB48000DD5FF /* lanuchImage.png */,
 				18CA104B1A5CD9F6002FEA0F /* appIcon */,
@@ -1822,6 +1839,7 @@
 				186D35431A6515A2005960A6 /* lanuchBackImage.png in Resources */,
 				189EF1A519A898DB00703EA5 /* 2返回1.png in Resources */,
 				189EF1BE19A898DB00703EA5 /* line.png in Resources */,
+				187CA16F1ADFC96E0060FF85 /* defaultHead.png in Resources */,
 				189EF1B619A898DB00703EA5 /* back.png in Resources */,
 				189246AD1A67B3BE00A03091 /* moreNoBack.png in Resources */,
 				18CA10851A5CD9F7002FEA0F /* download-hover.png in Resources */,
@@ -1895,6 +1913,7 @@
 				18A682DF1A1209B10079C2F5 /* bar_gray.png in Resources */,
 				186FF09E1A7A3E6F00AF5B7C /* diy.png in Resources */,
 				18F5400C19F7A9C0008292C2 /* icon_40x40.png in Resources */,
+				187CA1701ADFC96E0060FF85 /* logout.png in Resources */,
 				183AC17D1A7F50D1009BDD84 /* zoomIn.png in Resources */,
 				18550E1A1A6D0B25003D1542 /* joinShopping.png in Resources */,
 				189EF1AA19A898DB00703EA5 /* 4.下载2.png in Resources */,
@@ -1918,6 +1937,7 @@
 				18CA108B1A5CD9F7002FEA0F /* location-hover.png in Resources */,
 				18CA10901A5CD9F7002FEA0F /* pic-hover.png in Resources */,
 				187788AE1A6A634A00E3EE85 /* ShareSDKiPadSimpleShareViewUI.bundle in Resources */,
+				187CA1711ADFC96E0060FF85 /* userCentreMainBack.png in Resources */,
 				189EF1B219A898DB00703EA5 /* 8.帮助2.png in Resources */,
 				1832078419834F3600C4A6F4 /* Main_iPhone.storyboard in Resources */,
 				189EF1A019A898DB00703EA5 /* 搜索.png in Resources */,
@@ -1962,6 +1982,7 @@
 				18CA10941A5CD9F7002FEA0F /* qq-button-hover.png in Resources */,
 				18B851331A13522400EAC0F6 /* search.png in Resources */,
 				18AD72021A09F347001BDF39 /* blueArrow@2x.png in Resources */,
+				187CA16B1ADFC9510060FF85 /* userCentreViewController.xib in Resources */,
 				189246AB1A67B3BE00A03091 /* detailBackIcon.png in Resources */,
 				18CA10C41A5D22BE002FEA0F /* download30.png in Resources */,
 				18379FCF19B9A32900FB3385 /* progressView.png in Resources */,
@@ -2099,6 +2120,7 @@
 				187B27DF1A6E591900FD2AC7 /* LDProgressView.m in Sources */,
 				18ADEFA11A1C268C007AB012 /* downloading.m in Sources */,
 				189EF12F19A8981D00703EA5 /* productDisplayViewController.m in Sources */,
+				187CA16A1ADFC9510060FF85 /* userCentreViewController.m in Sources */,
 				189EF13C19A8986800703EA5 /* housesDetailController.m in Sources */,
 				1889806C19FA4A84005EEEFB /* UIImageView+AFNetworking.m in Sources */,
 				183AA6A51A80891C000866D4 /* MACircleProgressIndicator.m in Sources */,

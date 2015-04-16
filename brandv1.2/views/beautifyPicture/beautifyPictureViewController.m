@@ -88,7 +88,7 @@ LoginInfo *loginInfo;
 
 - (IBAction)accountAction:(id)sender {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"goToLogin" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"goUserCentre" object:nil];
 }
 
 - (IBAction)settingAction:(id)sender {

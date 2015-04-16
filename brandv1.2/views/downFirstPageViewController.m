@@ -436,7 +436,7 @@ NSString *areaValue = @"全部尺寸";
 }
 - (IBAction)AccountAction:(id)sender {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"goToLogin" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"goUserCentre" object:nil];
 }
 
 - (IBAction)settingAction:(id)sender {

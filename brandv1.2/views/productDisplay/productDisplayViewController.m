@@ -830,7 +830,7 @@ NSArray *secondChildArray;
 }
 - (IBAction)accountAction:(id)sender {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"goToLogin" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"goUserCentre" object:nil];
 }
 
 - (IBAction)shoppingAction:(id)sender {
