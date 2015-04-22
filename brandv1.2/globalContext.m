@@ -1159,4 +1159,96 @@ NSThread *downloadMainThread;
     
     return chineseString.pinYin;
 }
++(void)setUserHead:(UIButton *)userButton{
+    
+    
+    if([self isLogin]){
+
+        if(loginInfo.portrait.length>0){
+        
+        if(![loginInfo.portrait isEqualToString:@"defaultHead.png"])
+        [UIImage loadFromURL:loginInfo.portrait callback: ^(UIImage *image){
+            
+            if(image){
+                
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2,2, 20, 20)];
+                imageView.layer.cornerRadius = 10;
+                imageView.layer.masksToBounds = YES;
+                imageView.layer.borderWidth = 0;
+                [imageView setImage:image];
+                [imageView setBackgroundColor:[UIColor clearColor]];
+                imageView.tag =12;
+                [userButton addSubview:imageView];
+                
+                NSString *searchString = [[NSBundle mainBundle]pathForResource:@"circleHead.png" ofType:@""];
+                UIImage *defaultHead = [UIImage imageWithContentsOfFile:searchString];
+                [userButton setImage:defaultHead forState:UIControlStateNormal];
+                
+            }
+            
+            else{
+                
+                NSString *searchString = [[NSBundle mainBundle]pathForResource:@"account.png" ofType:@""];
+                UIImage *defaultHead = [UIImage imageWithContentsOfFile:searchString];
+                NSArray *subviews = [userButton subviews];
+                for (int i =1;i<subviews.count;i++) {
+                    UIView *view = subviews[i];
+                    [view removeFromSuperview];
+                }
+                [userButton setImage:defaultHead forState:UIControlStateNormal];
+
+                
+            }
+        }];
+            
+            
+        else{
+        
+            NSString *searchStringImage = [[NSBundle mainBundle]pathForResource:@"defaultHead.png" ofType:@""];
+            UIImage *defaultHeadImage = [UIImage imageWithContentsOfFile:searchStringImage];
+            
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2,2, 20, 20)];
+            imageView.layer.cornerRadius = 10;
+            imageView.layer.masksToBounds = YES;
+            imageView.layer.borderWidth = 0;
+            [imageView setImage:defaultHeadImage];
+            [imageView setBackgroundColor:[UIColor clearColor]];
+            imageView.tag =12;
+            [userButton addSubview:imageView];
+            
+            NSString *searchString = [[NSBundle mainBundle]pathForResource:@"circleHead.png" ofType:@""];
+            UIImage *defaultHead = [UIImage imageWithContentsOfFile:searchString];
+            [userButton setImage:defaultHead forState:UIControlStateNormal];
+        
+        }
+        }
+    
+    else{
+        
+        NSString *searchString = [[NSBundle mainBundle]pathForResource:@"account.png" ofType:@""];
+        UIImage *defaultHead = [UIImage imageWithContentsOfFile:searchString];
+        NSArray *subviews = [userButton subviews];
+        for (int i =1;i<subviews.count;i++) {
+            UIView *view = subviews[i];
+            [view removeFromSuperview];
+        }
+        [userButton setImage:defaultHead forState:UIControlStateNormal];
+        
+    }
+    }
+    else{
+    
+        NSString *searchString = [[NSBundle mainBundle]pathForResource:@"account.png" ofType:@""];
+        UIImage *defaultHead = [UIImage imageWithContentsOfFile:searchString];
+        
+        NSArray *subviews = [userButton subviews];
+        for (int i =1;i<subviews.count;i++) {
+            UIView *view = subviews[i];
+            [view removeFromSuperview];
+        }
+        
+        [userButton setImage:defaultHead forState:UIControlStateNormal];
+
+    }
+}
 @end

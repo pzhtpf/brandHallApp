@@ -27,4 +27,5 @@
 - (IBAction)selectPlanAction:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *selectPlanButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScrollView;
+@property (strong, nonatomic) IBOutlet UIButton *accountButton;
 @end

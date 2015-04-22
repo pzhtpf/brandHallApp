@@ -49,5 +49,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *deleteTitleLabel;
 - (IBAction)topCancelAction:(id)sender;
 - (IBAction)backIconAction:(id)sender;
-
+@property (strong, nonatomic) IBOutlet UIButton *accountButton;
 @end

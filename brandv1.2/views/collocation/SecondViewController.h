@@ -17,4 +17,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *retrievalButton;
 @property (strong, nonatomic) IBOutlet UIImageView *brandLogo;
 @property (strong, nonatomic) IBOutlet UILabel *brandLabelLabel;
+@property (strong, nonatomic) IBOutlet UIButton *accountButton;
 @end

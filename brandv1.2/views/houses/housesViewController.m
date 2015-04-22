@@ -68,6 +68,9 @@ NSString *sizeSelectCode = @"";
     
     [loginInfo addObserver:self forKeyPath:@"brand_logo_app" options:NSKeyValueObservingOptionNew context:nil];
     [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandNameLabel];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
+    [globalContext setUserHead:self.accountButton];
+    
     
     [self getHousesType:nil];
     
@@ -136,6 +139,10 @@ NSString *sizeSelectCode = @"";
         [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandNameLabel];
         
     }
+}
+-(void)reLogin:(id)sender{
+    
+        [globalContext setUserHead:self.accountButton];
 }
 -(void)initAnimation{
     

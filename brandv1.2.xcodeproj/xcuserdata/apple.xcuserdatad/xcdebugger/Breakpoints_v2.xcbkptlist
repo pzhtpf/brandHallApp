@@ -1754,11 +1754,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/productDisplay/productDetailViewController.m"
-            timestampString = "449569088.133544"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
             landmarkName = "-settingView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1770,11 +1770,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/productDisplay/productDetailViewController.m"
-            timestampString = "449569088.133544"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "-settingView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1786,12 +1786,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/productDisplay/productDetailViewController.m"
-            timestampString = "449569088.133544"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
-            landmarkName = "-initPlanView:"
+            startingLineNumber = "443"
+            endingLineNumber = "443"
+            landmarkName = "-initThread:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1802,12 +1802,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/productDisplay/productDetailViewController.m"
-            timestampString = "449569088.133544"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "446"
-            endingLineNumber = "446"
-            landmarkName = "-initPlanView:"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
+            landmarkName = "-initThread:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1834,11 +1834,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/tools/DBManager/DBHelper.m"
-            timestampString = "448016430.926886"
+            timestampString = "450933911.763701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "+settingSaveToDB"
             landmarkType = "5">
          </BreakpointContent>
@@ -1850,11 +1850,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/tools/DBManager/DBHelper.m"
-            timestampString = "448016430.926886"
+            timestampString = "450933911.763701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "+settingSaveToDB"
             landmarkType = "5">
          </BreakpointContent>
@@ -1978,11 +1978,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/productDisplay/productDetailViewController.m"
-            timestampString = "449569088.133544"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
             landmarkName = "-initView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2010,11 +2010,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/collocation/SecondViewController.m"
-            timestampString = "449224251.891519"
+            timestampString = "451204992.702061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "-removeDetailView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2153,11 +2153,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/tools/DBManager/DBHelper.m"
-            timestampString = "448444427.440563"
+            timestampString = "450933911.763701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "+lanuchImageSaveToDB:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2633,12 +2633,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downFirstPageViewController.m"
-            timestampString = "448787134.134519"
+            timestampString = "451207826.850887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
-            landmarkName = "-goToCollocation:"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
+            landmarkName = "-removeHousesListDetail:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2649,11 +2649,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1299"
-            endingLineNumber = "1299"
+            startingLineNumber = "1305"
+            endingLineNumber = "1305"
             landmarkName = "-goToDetail:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2681,11 +2681,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1305"
-            endingLineNumber = "1305"
+            startingLineNumber = "1311"
+            endingLineNumber = "1311"
             landmarkName = "-goToDetail:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2697,11 +2697,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "450329125.481539"
+            timestampString = "451205418.744897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "835"
-            endingLineNumber = "835"
+            startingLineNumber = "834"
+            endingLineNumber = "834"
             landmarkName = "-configDetailView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2713,27 +2713,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "444369481.573323"
+            timestampString = "451205418.744897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-updateHousesView:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "444369481.573323"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "-updateHousesView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2825,11 +2809,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "548"
-            endingLineNumber = "548"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
             landmarkName = "-configView:key:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2857,11 +2841,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/tools/DBManager/DBHelper.m"
-            timestampString = "450241853.685037"
+            timestampString = "450933911.763701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1210"
-            endingLineNumber = "1210"
+            startingLineNumber = "1208"
+            endingLineNumber = "1208"
             landmarkName = "+getDataFromPlanTable:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2969,11 +2953,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/tools/DBManager/DBHelper.m"
-            timestampString = "450241853.685037"
+            timestampString = "450933911.763701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1959"
-            endingLineNumber = "1959"
+            startingLineNumber = "1957"
+            endingLineNumber = "1957"
             landmarkName = "+getDetailByHousesId:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3001,12 +2985,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downFirstPageViewController.m"
-            timestampString = "448787134.134519"
+            timestampString = "451207826.850887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
-            landmarkName = "-goToCollocation:"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "-removeHousesListDetail:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3017,11 +3001,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
             landmarkName = "-configView:key:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3033,11 +3017,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1159"
-            endingLineNumber = "1159"
+            startingLineNumber = "1164"
+            endingLineNumber = "1164"
             landmarkName = "-startDownload:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3081,11 +3065,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "450329125.481539"
+            timestampString = "451205418.744897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "781"
-            endingLineNumber = "781"
+            startingLineNumber = "780"
+            endingLineNumber = "780"
             landmarkName = "-configDetailView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3102,7 +3086,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"
             endingLineNumber = "170"
-            landmarkName = "-updateHousesView:"
+            landmarkName = "-reLogin:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3113,12 +3097,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "450329125.481539"
+            timestampString = "451205418.744897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1520"
-            endingLineNumber = "1520"
-            landmarkName = "-startDownLoadAnimation"
+            startingLineNumber = "1519"
+            endingLineNumber = "1519"
+            landmarkName = "-planStartDownLoadAnimation"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3129,11 +3113,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "450329125.481539"
+            timestampString = "451205418.744897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "900"
-            endingLineNumber = "900"
+            startingLineNumber = "899"
+            endingLineNumber = "899"
             landmarkName = "-selectPlan:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3257,12 +3241,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/login/loginViewController.m"
-            timestampString = "450878013.004869"
+            timestampString = "451203831.342472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "681"
-            endingLineNumber = "681"
-            landmarkName = "-registerButtonAction:"
+            startingLineNumber = "687"
+            endingLineNumber = "687"
+            landmarkName = "-forgotPasswordButtonAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3369,11 +3353,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "-scrollViewDidEndDecelerating:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3385,11 +3369,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "-orderByDownloadTime:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3401,11 +3385,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "350"
-            endingLineNumber = "350"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "-configView:key:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3417,11 +3401,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "450329125.481539"
+            timestampString = "451205418.744897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1743"
-            endingLineNumber = "1743"
+            startingLineNumber = "1742"
+            endingLineNumber = "1742"
             landmarkName = "-barViewWasSwiped:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3433,11 +3417,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "450329125.481539"
+            timestampString = "451205418.744897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1731"
-            endingLineNumber = "1731"
+            startingLineNumber = "1730"
+            endingLineNumber = "1730"
             landmarkName = "-barViewWasSwiped:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3449,11 +3433,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "450329125.481539"
+            timestampString = "451205418.744897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1789"
-            endingLineNumber = "1789"
+            startingLineNumber = "1788"
+            endingLineNumber = "1788"
             landmarkName = "-completeAnimation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3481,11 +3465,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/tools/DBManager/DBHelper.m"
-            timestampString = "450241853.685037"
+            timestampString = "450933911.763701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1151"
-            endingLineNumber = "1151"
+            startingLineNumber = "1149"
+            endingLineNumber = "1149"
             landmarkName = "+getDataFromPlanTable:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3513,12 +3497,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/productDisplay/productDetailViewController.m"
-            timestampString = "449569088.133544"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "750"
-            endingLineNumber = "750"
-            landmarkName = "-pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:"
+            startingLineNumber = "748"
+            endingLineNumber = "748"
+            landmarkName = "-initPageView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3529,12 +3513,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/productDisplay/productDetailViewController.m"
-            timestampString = "449569088.133544"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "791"
-            endingLineNumber = "791"
-            landmarkName = "-pageViewController:willTransitionToViewControllers:"
+            startingLineNumber = "789"
+            endingLineNumber = "789"
+            landmarkName = "-pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3577,11 +3561,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/beautifyPicture/beautifyPictureDetailViewController.m"
-            timestampString = "448623280.34311"
+            timestampString = "451207826.850887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "427"
-            endingLineNumber = "427"
+            startingLineNumber = "433"
+            endingLineNumber = "433"
             landmarkName = "-tableView:viewForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3625,12 +3609,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/houses/housesViewController.m"
-            timestampString = "449033949.922228"
+            timestampString = "451204992.702061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
-            landmarkName = "-locationManager:didChangeAuthorizationStatus:"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "-getMessageList"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3673,11 +3657,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/productDisplay/productDisplayViewController.m"
-            timestampString = "449137816.078607"
+            timestampString = "451204992.702061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-getProductType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3689,11 +3673,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/productDisplay/productDisplayViewController.m"
-            timestampString = "449137816.078607"
+            timestampString = "451204992.702061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3833,11 +3817,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/houses/housesViewController.m"
-            timestampString = "449569088.133544"
+            timestampString = "451204992.702061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3849,11 +3833,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloadDetail.m"
-            timestampString = "450329125.481539"
+            timestampString = "451205418.744897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "755"
-            endingLineNumber = "755"
+            startingLineNumber = "754"
+            endingLineNumber = "754"
             landmarkName = "-configDetailView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3929,11 +3913,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1078"
-            endingLineNumber = "1078"
+            startingLineNumber = "1083"
+            endingLineNumber = "1083"
             landmarkName = "-startDownload:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3961,11 +3945,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "brandv1.2/views/downloading.m"
-            timestampString = "450344154.965582"
+            timestampString = "451203763.516274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1110"
-            endingLineNumber = "1110"
+            startingLineNumber = "1115"
+            endingLineNumber = "1115"
             landmarkName = "-startDownload:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3983,6 +3967,22 @@
             startingLineNumber = "295"
             endingLineNumber = "295"
             landmarkName = "-startDownloadMethod:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "brandv1.2/views/downloadDetail.m"
+            timestampString = "451205418.744897"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "373"
+            endingLineNumber = "373"
+            landmarkName = "-closeMethod:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

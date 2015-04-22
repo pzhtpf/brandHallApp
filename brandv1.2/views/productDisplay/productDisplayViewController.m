@@ -61,6 +61,7 @@ NSArray *secondChildArray;
     loginInfo.productSearch = @"";
     
     [loginInfo addObserver:self forKeyPath:@"brand_logo_app" options:NSKeyValueObservingOptionNew context:nil];
+    [globalContext setUserHead:self.accountButton];
     
     self.totalCount.font = [UIFont fontWithName:@"MicrosoftYaHei" size:15];
     self.productButton.titleLabel.font = [UIFont fontWithName:@"MicrosoftYaHei" size:15];
@@ -91,6 +92,10 @@ NSArray *secondChildArray;
         
     }
 }
+-(void)reLogin:(id)sender{
+    
+        [globalContext setUserHead:self.accountButton];
+}
 -(void)initNSNotificationCenter{
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addListView:) name:@"productaddListView" object:nil];
@@ -107,7 +112,8 @@ NSArray *secondChildArray;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unloadView:) name:@"unloadView" object:nil];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
+
     
 }
 -(void)unloadView:(NSNotification *)sender{

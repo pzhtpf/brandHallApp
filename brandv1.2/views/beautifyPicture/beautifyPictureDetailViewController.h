@@ -37,4 +37,5 @@
 @property (strong, nonatomic) IBOutlet UITableView *bpCommentTableView;
 @property (strong, nonatomic) IBOutlet UILabel *bpCommentTotalCount;
 @property (strong, nonatomic) IBOutlet UIButton *bpFavotiteButton;
+@property (strong, nonatomic) IBOutlet UIButton *accountButton;
 @end

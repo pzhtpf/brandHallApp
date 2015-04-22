@@ -68,19 +68,16 @@ LoginInfo *loginInfo;
     else
         return  @"保存失败";
 }
-+(void) settingSaveToDB{
++(void)settingSaveToDB{
     loginInfo =[[StockData getSingleton] valueForKey:@"loginInfo"];
     //  NSString *dbpwd = [[EncryptUtil encryptWithText:loginInfo.password] copy];
     NSString *dbpwd = loginInfo.password;
     sqlite3* database=nil;
     if (sqlite3_open([[self dataFilePath] UTF8String], &database) != SQLITE_OK) {
 		sqlite3_close(database);
-		NSAssert(0, @"Failed to open database");
+		NSLog(@"Failed to open database");
         
 	}
-    
-    
-    NSLog(@"%@",loginInfo.userName);
     
     char * errorMsg;
     NSString *createTableSql=@"create table if not exists brand_user(userId text primary key,UserName text,Password text,AutoLogin integer,remeberPassword integer,Domain text,isPush integer,enableDownload int,portrait text,type text,account text);";
@@ -123,6 +120,7 @@ LoginInfo *loginInfo;
     }
     sqlite3_step(stmt);
     sqlite3_close(database);
+        
 }
 +(void)saveBrandDetailToDB:(NSDictionary *)data{
     loginInfo =[[StockData getSingleton] valueForKey:@"loginInfo"];

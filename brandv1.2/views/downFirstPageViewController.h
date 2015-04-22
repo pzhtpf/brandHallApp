@@ -31,4 +31,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *dropArrowButton;
 @property (strong, nonatomic) IBOutlet UILabel *brandNameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *brandLogo;
+@property (strong, nonatomic) IBOutlet UIButton *accountButton;
 @end

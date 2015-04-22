@@ -44,6 +44,7 @@ NSMutableArray *editPlanSearchType;
     loginInfo.planSearch = @"";
     
     [loginInfo addObserver:self forKeyPath:@"brand_logo_app" options:NSKeyValueObservingOptionNew context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
     
     allData = [[NSMutableArray alloc] init];
     
@@ -69,13 +70,18 @@ NSMutableArray *editPlanSearchType;
 //    [clearButton setImage:[UIImage imageNamed:@"叉.png"] forState:UIControlStateNormal];
     
     [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandLabelLabel];
+    [globalContext setUserHead:self.accountButton];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
       if ([keyPath isEqualToString:@"brand_logo_app"] && object == loginInfo) {
           [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandLabelLabel];
 
       }
-    }
+}
+-(void)reLogin:(id)sender{
+    
+         [globalContext setUserHead:self.accountButton];
+}
 -(void)getPlanType:(id)sender{
     
     

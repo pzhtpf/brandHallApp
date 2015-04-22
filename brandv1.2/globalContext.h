@@ -28,4 +28,5 @@
 +(void)setCookies:(NSString *)userId;
 +(BOOL)detectBrandIDIsChange;
 +(NSString *)toPinYin:(NSString *)name;
++(void)setUserHead:(UIButton *)userButton;
 @end

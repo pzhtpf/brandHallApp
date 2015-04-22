@@ -49,7 +49,9 @@ typeSearchTableViewController *typeSearch;
     loginInfo.houseSearch = @"";
     
     housestypeArray = [[NSArray alloc] init];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
+    [globalContext setUserHead:self.accountButton];
+
    
     self.housesName.font =  [UIFont fontWithName:@"MicrosoftYaHei" size:17.0f];
     self.houseCount.font =  [UIFont fontWithName:@"MicrosoftYaHei" size:14.0f];
@@ -62,12 +64,10 @@ typeSearchTableViewController *typeSearch;
     [self.titleLabel addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectPlanAction:)]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToHousesDetail:) name:@"goToHousesTestDetail" object:nil];
-    
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeDetail:) name:@"removeDetail" object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeDetail:) name:@"removeDetail" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unloadView:) name:@"unloadView" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePlan:) name:@"changePlan" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
     
 }
 -(void)unloadView:(NSNotification *)sender{
@@ -80,7 +80,11 @@ typeSearchTableViewController *typeSearch;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changePlan" object:nil];
 
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reLogin" object:nil];
+}
+-(void)reLogin:(id)sender{
     
+        [globalContext setUserHead:self.accountButton];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -212,7 +216,7 @@ typeSearchTableViewController *typeSearch;
                          popController = nil;
                          typeSearch = nil;
                          
-
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reLogin" object:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"removeHousesDetail" object:nil];
                          
                      }

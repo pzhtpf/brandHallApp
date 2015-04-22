@@ -24,7 +24,9 @@ LoginInfo *loginInfo;
     // Do any additional setup after loading the view.
     loginInfo = [[StockData getSingleton] valueForKey:@"loginInfo"];
     [loginInfo addObserver:self forKeyPath:@"brand_logo_app" options:NSKeyValueObservingOptionNew context:nil];
-     [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandNameLabel];
+    [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandNameLabel];
+    [loginInfo addObserver:self forKeyPath:@"portrait" options:NSKeyValueObservingOptionNew context:nil];
+     [globalContext setUserHead:self.accountButton];
     
     _beautifyPicture = [[beautifyPicture alloc] initWithFrame:CGRectMake(0,44,1024,651)];
     _beautifyPicture.tag = 202;
@@ -37,6 +39,9 @@ LoginInfo *loginInfo;
     if ([keyPath isEqualToString:@"brand_logo_app"] && object == loginInfo) {
         [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandNameLabel];
         
+    }
+    if ([keyPath isEqualToString:@"portrait"] && object == loginInfo) {
+        [globalContext setUserHead:self.accountButton];
     }
 }
 - (void)didReceiveMemoryWarning {

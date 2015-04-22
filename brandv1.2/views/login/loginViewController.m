@@ -427,6 +427,8 @@ int count = 60;
     
        loginInfo.userId = [rootDic objectForKey:@"userId"];
     
+      [globalContext setCookies:[rootDic objectForKey:@"userId"]];
+    
         loginInfo.userName  = [rootDic objectForKey:@"userName"];
     
         loginInfo.userAccount = self.account.text;
@@ -448,52 +450,59 @@ int count = 60;
         
         NSString *url = [rootDic objectForKey:@"portrait"];
     
-       [downloadImage removeImage:loginInfo.portrait];
-    
-    
-    if(url){
+    if (loginInfo.portrait && loginInfo.portrait.length>0) {
         
+         [downloadImage removeImage:loginInfo.portrait];
+    }
+    
+    
+    NSString *localImageName  = @"defaultHead.png";
+
+    if(url.length>0){
+        
+        NSArray *names =[url componentsSeparatedByString:@"/"];
+        
+        localImageName  =[NSString stringWithFormat:@"%@%@",names[names.count-1],@"userPortrait.png"];
         NSString *path = url;
-        NSString *localImageName  = @"userPortrait.png";
         
         if([loginInfo.userType isEqualToString:@"normal"]){
         
-        url = [NSString stringWithFormat:@"%@%@",imageUrl,url];
+        path = [NSString stringWithFormat:@"%@%@",@"http://imgs.gezlife.com/Imgs/gezsns/",url];
         NSArray *names =[url componentsSeparatedByString:@"/"];
         localImageName = names[names.count-1];
         }
         
         NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:path,@"path",localImageName,@"name", nil];
         
-        
         AsyncImageDownloader *downloader = [[AsyncImageDownloader alloc] initWithMediaURL:path data:data tempData:nil successBlock:^(UIImage *image,NSDictionary *data,NSDictionary *dataTemp){
             
-            loginInfo.portrait = localImageName;
-            [DBHelper settingSaveToDB];
             NSLog(@"%@",@"用户头像下载成功");
+            
+             loginInfo.portrait = localImageName;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reLogin" object:nil];
+
             
         } failBlock:^(NSError *error){
             
             NSLog(@"%@",@"用户头像下载失败");
             
-            loginInfo.portrait = url;
-            [DBHelper settingSaveToDB];
-        }];
+                   }];
         
         [downloader startDownload];
     }
-    else{
     
+        loginInfo.portrait = localImageName;
         [DBHelper settingSaveToDB];
-    }
+    
     
         [[NSNotificationCenter defaultCenter] postNotificationName:@"removeMessageNotification" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"removeNotification" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"unloadView" object:nil];
         
 
-        [globalContext setCookies:[rootDic objectForKey:@"userId"]];
         [self closeMethod:nil];
+    
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"delayClose" object:nil];
 
 }
 -(void)showAlertView:(NSString *)message{     //显示提示框

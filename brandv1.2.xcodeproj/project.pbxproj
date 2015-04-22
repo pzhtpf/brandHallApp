@@ -156,6 +156,7 @@
 		189246AC1A67B3BE00A03091 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 189246A81A67B3BE00A03091 /* heart.png */; };
 		189246AD1A67B3BE00A03091 /* moreNoBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 189246A91A67B3BE00A03091 /* moreNoBack.png */; };
 		189246AE1A67B3BE00A03091 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 189246AA1A67B3BE00A03091 /* send.png */; };
+		18988AC01AE0F6AC004A13D6 /* circleHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 18988ABF1AE0F6AC004A13D6 /* circleHead.png */; };
 		189EDB7B19B8108800EC8C96 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EDB7A19B8108800EC8C96 /* loginViewController.m */; };
 		189EDB7F19B834EE00EC8C96 /* 密码.png in Resources */ = {isa = PBXBuildFile; fileRef = 189EDB7D19B834EE00EC8C96 /* 密码.png */; };
 		189EDB8319B844CB00EC8C96 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EDB8219B844CB00EC8C96 /* DBHelper.m */; };
@@ -566,6 +567,7 @@
 		189246A81A67B3BE00A03091 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		189246A91A67B3BE00A03091 /* moreNoBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moreNoBack.png; sourceTree = "<group>"; };
 		189246AA1A67B3BE00A03091 /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
+		18988ABF1AE0F6AC004A13D6 /* circleHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleHead.png; sourceTree = "<group>"; };
 		189EDB7919B8108800EC8C96 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = loginViewController.h; path = views/login/loginViewController.h; sourceTree = "<group>"; };
 		189EDB7A19B8108800EC8C96 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = loginViewController.m; path = views/login/loginViewController.m; sourceTree = "<group>"; };
 		189EDB7D19B834EE00EC8C96 /* 密码.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码.png"; sourceTree = "<group>"; };
@@ -1659,6 +1661,7 @@
 		18E3609F1999EAD4000BB855 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				18988ABF1AE0F6AC004A13D6 /* circleHead.png */,
 				187CA16C1ADFC96E0060FF85 /* defaultHead.png */,
 				187CA16D1ADFC96E0060FF85 /* logout.png */,
 				187CA16E1ADFC96E0060FF85 /* userCentreMainBack.png */,
@@ -1786,7 +1789,7 @@
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
 					1877799B1980EE4E00213447 = {
-						DevelopmentTeam = 7Q24579547;
+						DevelopmentTeam = R9D42VUED3;
 					};
 					187779C21980EE4E00213447 = {
 						TestTargetID = 1877799B1980EE4E00213447;
@@ -1996,6 +1999,7 @@
 				18CA10B61A5D05A7002FEA0F /* product.png in Resources */,
 				189EF1A719A898DB00703EA5 /* 3隐藏1.png in Resources */,
 				186A16F71A5E6A7E00979941 /* inputBorder.png in Resources */,
+				18988AC01AE0F6AC004A13D6 /* circleHead.png in Resources */,
 				18CA10791A5CD9F7002FEA0F /* 3d-hover.png in Resources */,
 				18CA10D01A5D26C8002FEA0F /* marketing30.png in Resources */,
 				18CA109C1A5CD9F7002FEA0F /* share-hover.png in Resources */,
@@ -2327,7 +2331,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Extend/YiXinSDK",
 				);
 				PRODUCT_NAME = "格致生活offline";
-				PROVISIONING_PROFILE = "52a1326a-ec3e-4eba-a1b3-6017da41c9f3";
+				PROVISIONING_PROFILE = "2e264a45-0ecf-4003-a340-ea130698e162";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2377,7 +2381,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Extend/YiXinSDK",
 				);
 				PRODUCT_NAME = "格致生活offline";
-				PROVISIONING_PROFILE = "52a1326a-ec3e-4eba-a1b3-6017da41c9f3";
+				PROVISIONING_PROFILE = "2e264a45-0ecf-4003-a340-ea130698e162";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};

@@ -79,6 +79,8 @@ UIPopoverController *popControllerDownloadDetail;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
+    [globalContext setUserHead:self.accountButton];
     
     if (_refreshHeaderView == nil) {
         
@@ -164,6 +166,10 @@ UIPopoverController *popControllerDownloadDetail;
 
     [DBHelper createDownloadTabel];
     
+}
+-(void)reLogin:(id)sender{
+    
+        [globalContext setUserHead:self.accountButton];
 }
 -(void)updateHousesView:(NSNotification *)notification{
     
@@ -364,7 +370,7 @@ UIPopoverController *popControllerDownloadDetail;
                          }
                          completion:^(BOOL finished) {
                             
-                             
+                            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reLogin" object:nil];
                              [[NSNotificationCenter defaultCenter] postNotificationName:@"removeHousesListDetail" object:nil];
                              [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateHousesView" object:nil];
                              

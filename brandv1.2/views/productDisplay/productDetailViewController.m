@@ -60,6 +60,9 @@ UIView *planView;
     self.backButton.titleLabel.font = [UIFont fontWithName:@"MicrosoftYaHei" size:15.0f];
     self.titleLabel.font = [UIFont fontWithName:@"MicrosoftYaHei" size:17.0f];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
+    [globalContext setUserHead:self.accountButton];
+    
     loginInfo.isProductDetail = true;
     loginInfo.productIsZoom  = false;
     
@@ -76,6 +79,10 @@ UIView *planView;
 - (void)viewDidAppear:(BOOL)animated{
 
     [super viewDidAppear:YES];
+}
+-(void)reLogin:(id)sender{
+
+    [globalContext setUserHead:self.accountButton];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -878,6 +885,8 @@ UIView *planView;
     // [[NSNotificationCenter defaultCenter] postNotificationName:@"goToBack" object:nil];
     loginInfo.isProductDetail = false;
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reLogin" object:nil];
+    
     [UIView animateWithDuration:0.3f
                           delay:0.0f
                         options:UIViewAnimationOptionTransitionFlipFromLeft
@@ -890,11 +899,6 @@ UIView *planView;
                      completion:^(BOOL finished) {
                          [self removeProductDetailView:nil];
                      }];
-
-    
- //   NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(removeProductDetailView:) object:nil];
- //   [thread start];
-
 }
 
 -(void)removeProductDetailView:(id)sender{
@@ -903,7 +907,7 @@ UIView *planView;
      self.view = nil;
     [tempScrollView removeFromSuperview];
     tempScrollView = nil;
-      
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"removeProductDetailView" object:nil];
 }
 - (IBAction)settingAction:(id)sender {

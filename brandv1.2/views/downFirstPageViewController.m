@@ -55,7 +55,9 @@ NSString *areaValue = @"全部尺寸";
     loginInfo.progressArray = [[NSMutableDictionary alloc] init];
     loginInfo.housesClassicSearch = @"";
     [loginInfo addObserver:self forKeyPath:@"brand_logo_app" options:NSKeyValueObservingOptionNew context:nil];
-     [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandNameLabel];
+    [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandNameLabel];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
+    [globalContext setUserHead:self.accountButton];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(housesListUpdateTotalCount:) name:@"housesListUpdateTotalCount" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sizeSearch:) name:@"sizeSearch" object:nil];
@@ -98,6 +100,10 @@ NSString *areaValue = @"全部尺寸";
         [globalContext settingBrandLogo:self.brandLogo nameLabel:self.brandNameLabel];
         
     }
+}
+-(void)reLogin:(id)sender{
+
+        [globalContext setUserHead:self.accountButton];
 }
 -(void)judgeHousesType{
     

@@ -100,11 +100,12 @@ NSMutableDictionary *isEditArray;
     
     self.downloadingTable.dataSource = self;
     self.downloadingTable.delegate = self;
-//    self.downloadingTable.sc
     [self.downloadingTable setBackgroundColor:[UIColor clearColor]];
 
     loginInfo = [[StockData getSingleton] valueForKey:@"loginInfo"];
     loginInfo.isTouching = true;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
+    [globalContext setUserHead:self.accountButton];
     
     if(!loginInfo.downloadedImage)
         loginInfo.downloadedImage = [[NSMutableDictionary alloc] init];
@@ -131,6 +132,10 @@ NSMutableDictionary *isEditArray;
     
     [self updateView:nil];
     
+}
+-(void)reLogin:(id)sender{
+    
+        [globalContext setUserHead:self.accountButton];
 }
 -(void)updateView:(id)sender{
     
@@ -1219,6 +1224,7 @@ NSMutableDictionary *isEditArray;
                          [gray_bar removeFromSuperview];
                          gray_bar = nil;
                          
+                           [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reLogin" object:nil];
                          [[NSNotificationCenter defaultCenter] postNotificationName:@"removeDownloadingView" object:nil];
                          [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateDownloadingView" object:nil];
                          [[NSNotificationCenter defaultCenter] removeObserver:self name:@"postAddGesture" object:nil];

@@ -38,6 +38,8 @@ LoginInfo *loginInfo;
 -(void)initView:(NSDictionary *)data{
 
     loginInfo =[[StockData getSingleton] valueForKey:@"loginInfo"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reLogin:) name:@"reLogin" object:nil];
+    [globalContext setUserHead:self.accountButton];
     
     bpAllCommentArray = [[NSMutableArray alloc] init];
     
@@ -83,6 +85,10 @@ LoginInfo *loginInfo;
     [self getbpCommentMessage:bpId reload:@"1"];
     
     
+}
+-(void)reLogin:(id)sender{
+    
+        [globalContext setUserHead:self.accountButton];
 }
 -(void)getbpDetailMessage:(id)bpId{
 
@@ -685,7 +691,7 @@ LoginInfo *loginInfo;
                          bpCommentPageIndex = 0;
                          [bpAllCommentArray removeAllObjects];
                          [self.bpCommentTableView reloadData];
-
+                         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reLogin" object:nil];
                          
                         [self.view removeFromSuperview];
                          self.view = nil;

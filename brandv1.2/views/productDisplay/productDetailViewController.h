@@ -55,4 +55,5 @@
 - (IBAction)favoriteAction:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *productFavoriteButton;
 @property (strong, nonatomic) UIButton *love;
+@property (strong, nonatomic) IBOutlet UIButton *accountButton;
 @end

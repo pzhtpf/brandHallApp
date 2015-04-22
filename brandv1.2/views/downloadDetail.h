@@ -38,6 +38,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *button18;
 @property (strong, nonatomic) IBOutlet UIButton *previewMapButton;
 - (IBAction)previewMapAction:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *accountButton;
 
 - (IBAction)button18Action:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *count;

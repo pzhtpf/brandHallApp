@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="xfC-TV-ozR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="xfC-TV-ozR">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="MicrosoftYaHei-Bold.ttf">
@@ -181,6 +181,7 @@
                     <tabBarItem key="tabBarItem" title="设计方案" image="3d30.png" id="cPa-gy-q4n"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="accountButton" destination="oC7-Du-fAM" id="nbo-kn-JtD"/>
                         <outlet property="brandLabelLabel" destination="mwX-ko-Daw" id="i1I-l1-WBY"/>
                         <outlet property="brandLogo" destination="sCl-9Y-mEN" id="bEG-w9-Spt"/>
                         <outlet property="retrievalButton" destination="oAb-H6-OQs" id="aLs-aM-HDQ"/>
@@ -366,6 +367,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="离线缓存" image="download30.png" id="Qg6-MS-uvM"/>
                     <connections>
+                        <outlet property="accountButton" destination="kHE-Ta-x39" id="aJA-Jk-aoX"/>
                         <outlet property="brandLogo" destination="A4O-8I-OYk" id="90M-Zx-cyC"/>
                         <outlet property="brandNameLabel" destination="EfH-Fe-Qax" id="68A-hr-PhA"/>
                         <outlet property="classSizeButton" destination="oh9-rp-nrS" id="iBs-dV-IWQ"/>
@@ -600,6 +602,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="accountButton" destination="eMH-Bg-lcx" id="6dr-yL-WHZ"/>
                         <outlet property="brandLogo" destination="6Lq-uC-H9L" id="k2d-Kh-jD8"/>
                         <outlet property="brandNameLabel" destination="8Xn-Uq-sLP" id="Kaw-Rr-ksz"/>
                         <outlet property="dropArrowButton" destination="R3P-rt-Gi2" id="xtg-mc-3p5"/>
@@ -1105,6 +1108,7 @@
                     <tabBarItem key="tabBarItem" title="家居美图" image="pic30.png" id="OMB-KK-97J"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="accountButton" destination="M1S-GE-CCT" id="qhq-PB-RIt"/>
                         <outlet property="brandLogo" destination="mkx-Ls-w56" id="jes-do-KMX"/>
                         <outlet property="brandNameLabel" destination="jxU-CT-irI" id="kqp-ii-5CX"/>
                         <outlet property="searchBorder" destination="Fu0-hJ-3Oo" id="fdu-Ua-dDe"/>
@@ -1359,6 +1363,7 @@
                     <tabBarItem key="tabBarItem" title="楼盘社区" image="location30.png" id="uCh-hE-yNs"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="accountButton" destination="hb6-jS-doU" id="FPk-iz-4Vv"/>
                         <outlet property="brandLogo" destination="FOT-Zg-pgW" id="VHo-dm-2I6"/>
                         <outlet property="brandNameLabel" destination="ncB-4g-pZC" id="mXu-df-2A2"/>
                         <outlet property="citySelectButton" destination="HwV-sd-0qd" id="wD0-b7-cqJ"/>
@@ -1439,8 +1444,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="7I6-lu-7su"/>
         <segue reference="fLC-bK-R7p"/>
         <segue reference="jCk-Qq-mY2"/>
-        <segue reference="moD-Ox-zPU"/>
     </inferredMetricsTieBreakers>
 </document>

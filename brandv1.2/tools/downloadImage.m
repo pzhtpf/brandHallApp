@@ -205,14 +205,16 @@
     NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:fileName];
     
     NSError *error = nil;
+    
+     if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath]) {
+    
     if(![fileManager removeItemAtPath: fullPath error:&error]) {
         NSLog(@"Delete failed:%@", error);
     } else {
         NSLog(@"image removed: %@", fullPath);
     }
     
-  //  NSString *appFolderPath = [[NSBundle mainBundle] resourcePath];
-//    NSLog(@"Directory Contents:\n%@", [fileManager directoryContentsAtPath: appFolderPath]);
+}
 }
 
 @end
